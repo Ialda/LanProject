@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">LanProject</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="activity_1">Activity 1</string>
+    <string name="activity_2">Activity 2</string>
+    <string name="activity_3">Activity 3</string>
+    <string name="activity_4">Activity 4</string>
+    <string name="activity_5">Activity 5</string>
+    <string name="chose_your_desired_activity">Chose your desired activity</string>
+    <string name="start">Start</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+
+    <string-array name="ActivityList">
+        <item>Activity 1</item>
+        <item>Activity 2</item>
+        <item>Activity 3</item>
+        <item>Activity 4</item>
+        <item>Activity 5</item>
+    </string-array>
+</resources>
