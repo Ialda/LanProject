@@ -29,7 +29,7 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainPageActivity" />
         </activity>
-        <activity android:name=".Portal1Activity">
+        <activity android:name=".TaskContainer">
             android:parentActivityName=".MainPageActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainPageActivity" />
