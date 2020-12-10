@@ -17,8 +17,8 @@ class TaskContainer : AppCompatActivity() {
     // TODO: Fan, this is quick and dirty
     // Fragments for Tasks 1-5
     private val taskFragments = listOf(
-        TaskHelpPlaceholder(),
-        TaskHelpPlaceholder(),
+        TaskFragment1(),
+        TaskHelpPlaceholder(), // placeholders
         TaskHelpPlaceholder(),
         TaskHelpPlaceholder(),
         TaskHelpPlaceholder()
