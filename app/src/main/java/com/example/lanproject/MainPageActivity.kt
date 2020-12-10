@@ -18,11 +18,11 @@ class MainPageActivity : AppCompatActivity() {
         val Activity = findViewById<Spinner>(R.id.SpinnerActivityChoice)
 
         when (Activity.selectedItem.toString()) {
-            "Activity 1" -> {startActivity(Intent(this, Portal1Activity::class.java))}
-            "Activity 2" -> {startActivity(Intent(this, Portal2Activity::class.java))}
-            "Activity 3" -> {startActivity(Intent(this, Portal3Activity::class.java))}
-            "Activity 4" -> {startActivity(Intent(this, Portal4Activity::class.java))}
-            "Activity 5" -> {startActivity(Intent(this, Portal5Activity::class.java))}
+            "Activity 1" -> {startActivity(Intent(this, TaskContainer::class.java).putExtra("taskID", 0))} // NOTE (linus): how do send fragment in intent? :/
+            "Activity 2" -> {startActivity(Intent(this, TaskContainer::class.java).putExtra("taskID", 1))}
+            "Activity 3" -> {startActivity(Intent(this, TaskContainer::class.java).putExtra("taskID", 2))}
+            "Activity 4" -> {startActivity(Intent(this, TaskContainer::class.java).putExtra("taskID", 3))}
+            "Activity 5" -> {startActivity(Intent(this, TaskContainer::class.java).putExtra("taskID", 4))}
         }
     }
 }
