@@ -9,32 +9,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LanProject">
+        <activity android:name=".LandingPageActivity"></activity>
         <activity android:name=".Portal5Activity">
             android:parentActivityName=".MainPageActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainPageActivity" />
         </activity>
         <activity android:name=".Portal4Activity">
             android:parentActivityName=".MainPageActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainPageActivity" />
         </activity>
         <activity android:name=".Portal3Activity">
             android:parentActivityName=".MainPageActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainPageActivity" />
         </activity>
         <activity android:name=".Portal2Activity">
             android:parentActivityName=".MainPageActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainPageActivity" />
         </activity>
         <activity android:name=".TaskContainer">
             android:parentActivityName=".MainPageActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainPageActivity" />
         </activity>
-        <activity android:name=".MainPageActivity" />
+        <activity android:name=".MainPageActivity">
+            android:parentActivityName=".LandingPageActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LandingPageActivity" />
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
