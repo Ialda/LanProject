@@ -29,6 +29,13 @@
         <item>Activity 4</item>
         <item>Activity 5</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- TODO remove placeholders -->
+    <string-array name="Task1Placeholder">
+        <item>Veritatis</item>
+        <item>Animi</item>
+        <item>dolores</item>
+        <item>cupiditate</item>
+        <item>perspiciatis</item>
+    </string-array>
 </resources>
