@@ -21,4 +21,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, LandingPageActivity::class.java))
         }
     }
+
+    fun RegisterPageview(view: View) {
+
+        startActivity(Intent(this, RegisterPageActivity::class.java))
+    }
 }

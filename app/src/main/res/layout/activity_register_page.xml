@@ -4,61 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".RegisterPageActivity">
 
     <EditText
-        android:id="@+id/PlainTextUsername"
+        android:id="@+id/PlainTextRegisterUsername"
         android:layout_width="360dp"
         android:layout_height="45dp"
-        android:layout_marginTop="180dp"
-        android:autofillHints=""
+        android:layout_marginTop="120dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="@string/username"
         android:inputType="textPersonName"
+        android:hint="@string/username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/PasswordUserpswd"
+        android:id="@+id/PasswordRegisterpswd"
         android:layout_width="360dp"
         android:layout_height="45dp"
         android:layout_marginTop="60dp"
-        android:autofillHints=""
         android:ems="10"
         android:gravity="center"
         android:hint="@string/password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PlainTextUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/PlainTextRegisterUsername" />
+
+    <EditText
+        android:id="@+id/PasswordReRegisterpswd"
+        android:layout_width="360dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/confirmPassword"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PasswordRegisterpswd" />
+
+    <Spinner
+        android:id="@+id/RoleSpinner"
+        android:layout_width="180dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="60dp"
+        android:entries="@array/Roles"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PasswordReRegisterpswd" />
 
     <Button
-        android:id="@+id/ButtonLogin"
+        android:id="@+id/RegisterButton"
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_marginTop="60dp"
-        android:onClick="LandingPageView"
-        android:text="@string/login"
-        app:backgroundTint="#4CAF50"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordUserpswd" />
-
-    <Button
-        android:id="@+id/ButtonRegister"
-        android:layout_width="180dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="40dp"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:onClick="RegisterPageview"
         android:text="@string/register"
-        android:textColor="@color/black"
-        app:backgroundTint="#FFFFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonLogin" />
-
+        app:layout_constraintTop_toBottomOf="@+id/RoleSpinner" />
 </androidx.constraintlayout.widget.ConstraintLayout>

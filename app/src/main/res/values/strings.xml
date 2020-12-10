@@ -18,6 +18,7 @@
     <string name="test">test</string>
     <string name="new_test">New Test</string>
     <string name="logout">Logout</string>
+    <string name="confirmPassword">Confirm Password</string>
     <string name="activity_1_points_10_10_comment_went_superb">Activity 1 - Points: 10/10 - Comment: Went superb!</string>
     <string name="activity_2_points_3_10_comment_went_not_so_superb">Activity 2 - Points: 3/10 - Comment: Went not so superb!</string>
     <string name="activity_5_points_comment_who_bloody_knows">Activity 5 - Points: ?/? - Comment: Who bloody knows?</string>
@@ -38,4 +39,10 @@
         <item>cupiditate</item>
         <item>perspiciatis</item>
     </string-array>
+
+    <string-array name="Roles">
+        <item>Student</item>
+        <item>Teacher</item>
+    </string-array>
+
 </resources>
