@@ -13,12 +13,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun MainPageView(view: View) {
+    fun LandingPageView(view: View) {
         val Username = findViewById<EditText>(R.id.PlainTextUsername)
         val Password = findViewById<EditText>(R.id.PasswordUserpswd)
 
         if (Username.text.toString() == "User" && Password.text.toString() == "Login") {
-            startActivity(Intent(this, MainPageActivity::class.java))
+            startActivity(Intent(this, LandingPageActivity::class.java))
         }
     }
 }
