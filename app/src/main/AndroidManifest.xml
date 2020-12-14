@@ -16,30 +16,6 @@
                 android:value=".MainActivity" />
         </activity>
         <activity android:name=".LandingPageActivity" />
-        <activity android:name=".Portal5Activity"
-            android:parentActivityName=".MainPageActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainPageActivity" />
-        </activity>
-        <activity android:name=".Portal4Activity"
-            android:parentActivityName=".MainPageActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainPageActivity" />
-        </activity>
-        <activity android:name=".Portal3Activity"
-            android:parentActivityName=".MainPageActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainPageActivity" />
-        </activity>
-        <activity android:name=".Portal2Activity"
-            android:parentActivityName=".MainPageActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainPageActivity" />
-        </activity>
         <activity android:name=".TaskContainer"
             android:parentActivityName=".MainPageActivity">
             <meta-data
