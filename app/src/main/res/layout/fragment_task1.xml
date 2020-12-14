@@ -14,150 +14,192 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Instructions"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:text="Qui et qui id et expedita quia et suscipit. Eum qui sint iusto saepe rerum temporibus aut. Aut delectus quia sit animi vero saepe. Debitis et recusandae veniam doloremque. Explicabo occaecati quia qui qui."
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Task"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:text="Qui et qui id et expedita quia et suscipit. Eum qui sint iusto saepe rerum temporibus aut. Aut delectus quia sit animi vero saepe. Debitis et recusandae veniam doloremque. Explicabo occaecati quia qui"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView1"
-                android:layout_width="wrap_content"
+                android:id="@+id/cardView4"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6">
+                app:layout_constraintTop_toTopOf="parent">
 
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:entries="@array/Task1Placeholder" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Instructions"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Qui et qui id et expedita quia et suscipit. Eum qui sint iusto saepe rerum temporibus aut. Aut delectus quia sit animi vero saepe. Debitis et recusandae veniam doloremque. Explicabo occaecati quia qui qui."
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:text="quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView1" />
-
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9">
-
-                <Spinner
-                    android:id="@+id/spinner2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:entries="@array/Task1Placeholder" />
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="0dp"
+                android:id="@+id/cardView5"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:text="quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+                app:layout_constraintTop_toBottomOf="@+id/cardView4">
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:text="quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilisquia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView7">
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilisquia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
-                <Spinner
-                    android:id="@+id/spinner3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:entries="@array/Task1Placeholder" />
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Task"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+                        <Spinner
+                            android:id="@+id/spinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:entries="@array/Task1Placeholder" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="Qui et qui id et expedita quia et suscipit. Eum qui sint iusto saepe rerum temporibus aut. Aut delectus quia sit animi vero saepe. Debitis et recusandae veniam doloremque. Explicabo occaecati quia qui"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="quia corporis voluptatum perferendis doloremque nihil et nisi. Architecto quasi nihil placeat sunt. Mollitia dolorem sed porro nesciunt facilis"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView1" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+                        <Spinner
+                            android:id="@+id/spinner2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:entries="@array/Task1Placeholder" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+                        <Spinner
+                            android:id="@+id/spinner3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:entries="@array/Task1Placeholder" />
+
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 
@@ -165,13 +207,14 @@
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:text="Finish test"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                app:layout_constraintTop_toBottomOf="@+id/cardView5" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
