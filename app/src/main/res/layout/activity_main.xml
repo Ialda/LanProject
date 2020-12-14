@@ -8,23 +8,25 @@
 
     <EditText
         android:id="@+id/PlainTextUsername"
-        android:layout_width="360dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="180dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:autofillHints=""
         android:ems="10"
         android:gravity="center"
         android:hint="@string/username"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.252" />
 
     <EditText
         android:id="@+id/PasswordUserpswd"
-        android:layout_width="360dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:autofillHints=""
         android:ems="10"
         android:gravity="center"
@@ -36,7 +38,7 @@
 
     <Button
         android:id="@+id/ButtonLogin"
-        android:layout_width="180dp"
+        android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginTop="60dp"
         android:onClick="LandingPageView"
@@ -47,15 +49,12 @@
 
     <Button
         android:id="@+id/ButtonRegister"
-        android:layout_width="180dp"
+        android:layout_width="160dp"
         android:layout_height="60dp"
-        android:layout_marginTop="40dp"
-        android:background="@android:color/transparent"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         android:onClick="RegisterPageview"
         android:text="@string/register"
-        android:textColor="@color/black"
-        app:backgroundTint="#FFFFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ButtonLogin" />
