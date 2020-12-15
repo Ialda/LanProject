@@ -15,6 +15,7 @@ class TaskContainer : AppCompatActivity() {
     }
 
     // TODO: Fan, this is quick and dirty
+    // Store java class names instead of initialized fragments...
     // Fragments for Tasks 1-5
     private val taskFragments = listOf(
         TaskFragment1(),
