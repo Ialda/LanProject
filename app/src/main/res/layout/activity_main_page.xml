@@ -26,7 +26,7 @@
     <Button
         android:id="@+id/ButtonStartActivity"
         android:layout_width="wrap_content"
-        android:layout_height="56dp"
+        android:layout_height="70dp"
         android:layout_marginTop="56dp"
         android:layout_marginBottom="16dp"
         android:onClick="ActivityView"
