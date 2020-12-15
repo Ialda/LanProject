@@ -33,7 +33,7 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
 
         val title = json.getString("title")
         val instructions = json.getString("instructions")
-                                                                        //TODO:
+                                                                        // TODO:
         val random = json.getBoolean("random")                          // What
         val randomiseChoices = json.getBoolean("randomiseChoices")      // Do
         val showQuestionNumbers = json.getBoolean("showQuestionNumbers")// These
@@ -42,7 +42,7 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
         val items = mutableListOf<taskItem>()
         init {
             val jsonItems = json.getJSONArray("items")
-            for (i in 0  until jsonItems.length()){
+            for (i in 0 until jsonItems.length()) {
                 val item = jsonItems.getJSONObject(i)
                 items.add(taskItem(item))
             }
