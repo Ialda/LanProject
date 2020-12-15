@@ -1,6 +1,7 @@
 package com.example.lanproject
 
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -115,11 +116,12 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
             val linearLayout = view.findViewById<LinearLayout>(R.id.linearLayout)
             testData.items.forEach{
                 val text = TextView(view.context)
-                text.text = it.text1
+                Log.w("LanProject", it.text1)
+                text.text = Html.fromHtml(it.text1) // TODO: deprecated. what do?
                 linearLayout.addView(text)
 
                 val tempText = TextView(view.context)
-                text.text = "DROPDOWN HERE"
+                tempText.text = "DROPDOWN HERE"
                 linearLayout.addView(tempText)
 
                 val text2 = TextView(view.context)
