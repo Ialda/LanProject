@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import org.json.JSONObject
 
 class TaskFragment1 : Fragment(R.layout.fragment_task1) {
 
-    // construct in try-catch to avoid json parse errors. (this is lazy do better)
+    // construct in try-catch to avoid json parse errors. TODO: (this is lazy do better error handling in class)
     // json: a JSONObject from the api to parse
     private class taskData(json: JSONObject) {
         class taskItem(json: JSONObject) {
@@ -33,11 +35,11 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
 
         val title = json.getString("title")
         val instructions = json.getString("instructions")
-                                                                        // TODO:
-        val random = json.getBoolean("random")                          // What
-        val randomiseChoices = json.getBoolean("randomiseChoices")      // Do
-        val showQuestionNumbers = json.getBoolean("showQuestionNumbers")// These
-        val sectionsOnSamePage = json.getBoolean("sectionsOnSamePage")  // Mean?
+                                                                        //TODO:
+        val random = json.getBoolean("random")                          //What
+        val randomiseChoices = json.getBoolean("randomiseChoices")      //Do
+        val showQuestionNumbers = json.getBoolean("showQuestionNumbers")//These
+        val sectionsOnSamePage = json.getBoolean("sectionsOnSamePage")  //Mean?
 
         val items = mutableListOf<taskItem>()
         init {
@@ -54,15 +56,15 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
         try {
             val testData = taskData(JSONObject("""
                 {
-                  "title": "Legalfighthitsmusicpirates",
-                  "instructions": "Clickonthegaps,thenchoosethebestwordtofillthespaces.",
+                  "title": "Legal fight hits music pirates",
+                  "instructions": "Click on the gaps, then choose the best word to fill the spaces.",
                   "random": false,
                   "randomiseChoices": false,
                   "showQuestionNumbers": true,
                   "sectionsOnSamePage": false,
                   "items": [
                     {
-                      "text1": "<h2>Legalfighthitsmusicpirates</h2>Theglobalrecordingindustryhaslauncheditslargestwaveoflegal",
+                      "text1": "<h2>Legal fight hits music pirates</h2>The global recording industry has launched its largest wave of legal",
                       "choices": [
                         {
                           "text": "action",
@@ -105,6 +107,23 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
                     }
                 Log.i("LanProject", "\t"+it.text2)
             }
+
+            view.findViewById<TextView>(R.id.instructionsText).text = testData.instructions
+            val linearLayout = view.findViewById<LinearLayout>(R.id.linearLayout)
+            testData.items.forEach{
+                val text = TextView(view.context)
+                text.text = it.text1
+                linearLayout.addView(text)
+
+                val tempText = TextView(view.context)
+                text.text = "DROPDOWN HERE"
+                linearLayout.addView(tempText)
+
+                val text2 = TextView(view.context)
+                text2.text = it.text2
+                linearLayout.addView(text2)
+            }
+
         } catch (e: Exception) {
             Log.e("LanProject", "JSON failed")
         }
