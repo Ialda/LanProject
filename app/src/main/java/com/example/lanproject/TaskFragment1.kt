@@ -5,9 +5,11 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import kotlinx.android.synthetic.main.fragment_task_help_placeholder.view.*
+import kotlinx.android.synthetic.main.fragment_task1.*
+import kotlinx.android.synthetic.main.gap_spinner.*
 import org.json.JSONObject
 
 class TaskFragment1 : Fragment(R.layout.fragment_task1) {
@@ -53,6 +55,7 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
+
         try {
             val testData = taskData(JSONObject("""
                 {
@@ -127,5 +130,8 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
         } catch (e: Exception) {
             Log.e("LanProject", "JSON failed")
         }
+
+        val view = LayoutInflater.from(cardView5.context)
+        val spinner = view.inflate(R.layout.gap_spinner, null)
     }
 }
