@@ -158,16 +158,17 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
                 text.text = HtmlCompat.fromHtml(it.text1, HtmlCompat.FROM_HTML_MODE_LEGACY)
                 text.layoutParams = margins
 
-                val tempText = TextView(view.context)
-                tempText.text = "DROPDOWN HERE"
-                tempText.layoutParams = margins
+                val linearLayout = view.findViewById<LinearLayout>(R.id.linearLayout)
+                val inflater = LayoutInflater.from(linearLayout.context)
+                val child = inflater.inflate(R.layout.gap_spinner, null)
+                child.layoutParams = margins
 
                 val text2 = TextView(view.context)
                 text2.text = HtmlCompat.fromHtml(it.text2, HtmlCompat.FROM_HTML_MODE_LEGACY)
                 text2.layoutParams = margins
 
                 linearLayout.addView(text)
-                linearLayout.addView(tempText)
+                linearLayout.addView(child)
                 linearLayout.addView(text2)
             }
 
@@ -175,9 +176,5 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
             Log.e("LanProject", "JSON failed")
             view.findViewById<TextView>(R.id.instructionsText).text = "Bad thing happened, send help"
         }
-        val linearLayout = view.findViewById<LinearLayout>(R.id.linearLayout)
-        val inflater = LayoutInflater.from(linearLayout.context)
-        val child = inflater.inflate(R.layout.gap_spinner, null)
-        linearLayout.addView(child)
     }
 }
