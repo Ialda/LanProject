@@ -7,7 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.LinearLayout
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import kotlinx.android.synthetic.main.fragment_task_help_placeholder.view.*
@@ -27,6 +29,7 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
                 val text = json.getString("text")
                 val correct = json.getBoolean("correct")
                 val feedback = json.getString("feedback")
+                override fun toString(): String = text
             }
 
             val text1 = json.getString("text1")
@@ -160,6 +163,13 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
 
                 val inflater = LayoutInflater.from(linearLayout.context)
                 val child = inflater.inflate(R.layout.gap_spinner, null)
+                val adapter = ArrayAdapter<taskData.taskItem.choice>(
+                    linearLayout.context,
+                    R.layout.gap_spinner_text,
+                    R.id.gapSpinnerText,
+                    it.choices
+                )
+                child.findViewById<Spinner>(R.id.gapSpinner).adapter = adapter
 
                 val text2 = TextView(view.context)
                 text2.text = HtmlCompat.fromHtml(it.text2, HtmlCompat.FROM_HTML_MODE_LEGACY)
