@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         val Username = findViewById<EditText>(R.id.PlainTextUsername)
         val Password = findViewById<EditText>(R.id.PasswordUserpswd)
 
-        if (Username.text.toString() == "User" && Password.text.toString() == "Login") {
+        if (Username.text.toString() == "" && Password.text.toString() == "") {
             startActivity(Intent(this, LandingPageActivity::class.java))
         }
     }

@@ -22,7 +22,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainPageActivity" />
         </activity>
-        <activity android:name=".MainPageActivity"
+        <activity android:name=".MainPageActivity">
             android:parentActivityName=".LandingPageActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

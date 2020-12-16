@@ -1,6 +1,7 @@
 package com.example.lanproject
 
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.text.HtmlCompat
 import kotlinx.android.synthetic.main.fragment_task_help_placeholder.view.*
 import kotlinx.android.synthetic.main.fragment_task1.*
 import kotlinx.android.synthetic.main.gap_spinner.*
@@ -93,7 +95,32 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
                           "feedback": "Incorrect"
                         }
                       ],
-                      "text2": "&nbsp;"
+                      "text2": "&nbsp;yet."
+                    },{
+                      "text1": "Russian torrent site RuTracker.org has been hit with several suits in the Moscow court from the ",
+                      "choices": [
+                        {
+                          "text": "major",
+                          "correct": true,
+                          "feedback": "Correct"
+                        },
+                        {
+                          "text": "ginormous",
+                          "correct": false,
+                          "feedback": "Incorrect"
+                        },
+                        {
+                          "text": "gigantic",
+                          "correct": false,
+                          "feedback": "Incorrect"
+                        },
+                        {
+                          "text": "massive",
+                          "correct": false,
+                          "feedback": "Incorrect"
+                        }
+                      ],
+                      "text2": " american records organisation RIAA..."
                     }
                   ]
                 }
@@ -117,16 +144,30 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
             view.findViewById<TextView>(R.id.instructionsText).text = testData.instructions
             val linearLayout = view.findViewById<LinearLayout>(R.id.linearLayout)
             testData.items.forEach{
+                val dpRatio = view.context.resources.displayMetrics.density
+                val margins = ViewGroup.MarginLayoutParams(
+                    ViewGroup.MarginLayoutParams.MATCH_PARENT,
+                    ViewGroup.MarginLayoutParams.WRAP_CONTENT
+                )
+                margins.setMargins(
+                    (16*dpRatio).toInt(), 0,
+                    (16*dpRatio).toInt(), 0
+                )
+
                 val text = TextView(view.context)
-                text.text = it.text1
-                linearLayout.addView(text)
+                text.text = HtmlCompat.fromHtml(it.text1, HtmlCompat.FROM_HTML_MODE_LEGACY)
+                text.layoutParams = margins
 
                 val tempText = TextView(view.context)
-                text.text = "DROPDOWN HERE"
-                linearLayout.addView(tempText)
+                tempText.text = "DROPDOWN HERE"
+                tempText.layoutParams = margins
 
                 val text2 = TextView(view.context)
-                text2.text = it.text2
+                text2.text = HtmlCompat.fromHtml(it.text2, HtmlCompat.FROM_HTML_MODE_LEGACY)
+                text2.layoutParams = margins
+
+                linearLayout.addView(text)
+                linearLayout.addView(tempText)
                 linearLayout.addView(text2)
             }
 
