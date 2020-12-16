@@ -108,22 +108,47 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
                           "feedback": "Correct"
                         },
                         {
-                          "text": "ginormous",
+                          "text": "evil",
                           "correct": false,
                           "feedback": "Incorrect"
                         },
                         {
-                          "text": "gigantic",
+                          "text": "corrupt",
                           "correct": false,
                           "feedback": "Incorrect"
                         },
                         {
-                          "text": "massive",
+                          "text": "capitalist",
                           "correct": false,
                           "feedback": "Incorrect"
                         }
                       ],
-                      "text2": " american records organisation RIAA..."
+                      "text2": " american records organisation RIAA, which has been terrorizing independent content creators and music labels for several decades."
+                    },{
+                      "text1": "In a courtroom speech, RIAA representative <i>Core P. Orate Shill</i>",
+                      "choices": [
+                        {
+                          "text": "testified to",
+                          "correct": true,
+                          "feedback": "Correct"
+                        },
+                        {
+                          "text": "paid off",
+                          "correct": false,
+                          "feedback": "Incorrect"
+                        },
+                        {
+                          "text": "blatantly lied to",
+                          "correct": false,
+                          "feedback": "Incorrect"
+                        },
+                        {
+                          "text": "begged to",
+                          "correct": false,
+                          "feedback": "Incorrect"
+                        }
+                      ],
+                      "text2": "the judge, painting a grim picture of the intellectual property industry, which in recent years has increasingly had to confront the general public's unwillingness to put up with their shit."
                     }
                   ]
                 }
@@ -158,7 +183,7 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
 
             testData.items.forEach{
                 val text = TextView(view.context)
-                text.text = HtmlCompat.fromHtml(it.text1, HtmlCompat.FROM_HTML_MODE_LEGACY)
+                text.text = HtmlCompat.fromHtml(it.text1+"...", HtmlCompat.FROM_HTML_MODE_LEGACY)
                 text.layoutParams = textLayoutParams
 
                 val inflater = LayoutInflater.from(linearLayout.context)
@@ -172,7 +197,7 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
                 child.findViewById<Spinner>(R.id.gapSpinner).adapter = adapter
 
                 val text2 = TextView(view.context)
-                text2.text = HtmlCompat.fromHtml(it.text2, HtmlCompat.FROM_HTML_MODE_LEGACY)
+                text2.text = HtmlCompat.fromHtml("..."+it.text2, HtmlCompat.FROM_HTML_MODE_LEGACY)
                 text2.layoutParams = textLayoutParams
 
                 linearLayout.addView(text)
