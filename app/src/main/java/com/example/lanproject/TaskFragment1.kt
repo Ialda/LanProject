@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_task_help_placeholder.view.*
@@ -13,6 +14,8 @@ import kotlinx.android.synthetic.main.gap_spinner.*
 import org.json.JSONObject
 
 class TaskFragment1 : Fragment(R.layout.fragment_task1) {
+
+    private lateinit var inflater: LayoutInflater
 
     // construct in try-catch to avoid json parse errors. TODO: (this is lazy do better error handling in class)
     // json: a JSONObject from the api to parse
@@ -129,9 +132,11 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
 
         } catch (e: Exception) {
             Log.e("LanProject", "JSON failed")
+            view.findViewById<TextView>(R.id.instructionsText).text = "Bad thing happened, send help"
         }
-
-        val view = LayoutInflater.from(cardView5.context)
-        val spinner = view.inflate(R.layout.gap_spinner, null)
+        val linearLayout = view.findViewById<LinearLayout>(R.id.linearLayout)
+        val inflater = LayoutInflater.from(linearLayout.context)
+        val child = inflater.inflate(R.layout.gap_spinner, null)
+        linearLayout.addView(child)
     }
 }
