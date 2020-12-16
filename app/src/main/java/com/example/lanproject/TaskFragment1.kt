@@ -8,16 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import kotlinx.android.synthetic.main.fragment_task_help_placeholder.view.*
 import kotlinx.android.synthetic.main.fragment_task1.*
 import kotlinx.android.synthetic.main.gap_spinner.*
+import kotlinx.android.synthetic.main.gap_spinner.view.*
 import org.json.JSONObject
 
 class TaskFragment1 : Fragment(R.layout.fragment_task1) {
 
     private lateinit var inflater: LayoutInflater
+    private var gapSpinners = mutableListOf<Spinner>()
 
     // construct in try-catch to avoid json parse errors. TODO: (this is lazy do better error handling in class)
     // json: a JSONObject from the api to parse
@@ -153,7 +156,7 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
                 (16*dpRatio).toInt(), 0
             )
 
-            testData.items.forEach{
+            testData.items.forEach {
                 val text = TextView(view.context)
                 text.text = HtmlCompat.fromHtml(it.text1, HtmlCompat.FROM_HTML_MODE_LEGACY)
                 text.layoutParams = textLayoutParams
@@ -168,9 +171,14 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
                 linearLayout.addView(text)
                 linearLayout.addView(child)
                 linearLayout.addView(text2)
+
+                gapSpinners.add(child.gapSpinner)
             }
+            // gapSpinners.forEach { spinner ->
+            //     Log.i("LanProject", spinner.selectedItem.toString())
+            // }
         } catch (e: Exception) {
-            Log.e("LanProject", "JSON failed")
+            Log.e("LanProject", "JSON failed (${e.message})")
         }
     }
 }
