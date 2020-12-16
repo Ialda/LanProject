@@ -143,38 +143,34 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
 
             view.findViewById<TextView>(R.id.instructionsText).text = testData.instructions
             val linearLayout = view.findViewById<LinearLayout>(R.id.linearLayout)
-            testData.items.forEach{
-                val dpRatio = view.context.resources.displayMetrics.density
-                val margins = ViewGroup.MarginLayoutParams(
-                    ViewGroup.MarginLayoutParams.MATCH_PARENT,
-                    ViewGroup.MarginLayoutParams.WRAP_CONTENT
-                )
-                margins.setMargins(
-                    (16*dpRatio).toInt(), 0,
-                    (16*dpRatio).toInt(), 0
-                )
+            val dpRatio = view.context.resources.displayMetrics.density
+            val textLayoutParams = ViewGroup.MarginLayoutParams(
+                ViewGroup.MarginLayoutParams.MATCH_PARENT,
+                ViewGroup.MarginLayoutParams.WRAP_CONTENT
+            )
+            textLayoutParams.setMargins(
+                (16*dpRatio).toInt(), 0,
+                (16*dpRatio).toInt(), 0
+            )
 
+            testData.items.forEach{
                 val text = TextView(view.context)
                 text.text = HtmlCompat.fromHtml(it.text1, HtmlCompat.FROM_HTML_MODE_LEGACY)
-                text.layoutParams = margins
+                text.layoutParams = textLayoutParams
 
-                val linearLayout = view.findViewById<LinearLayout>(R.id.linearLayout)
                 val inflater = LayoutInflater.from(linearLayout.context)
                 val child = inflater.inflate(R.layout.gap_spinner, null)
-                child.layoutParams = margins
 
                 val text2 = TextView(view.context)
                 text2.text = HtmlCompat.fromHtml(it.text2, HtmlCompat.FROM_HTML_MODE_LEGACY)
-                text2.layoutParams = margins
+                text2.layoutParams = textLayoutParams
 
                 linearLayout.addView(text)
                 linearLayout.addView(child)
                 linearLayout.addView(text2)
             }
-
         } catch (e: Exception) {
             Log.e("LanProject", "JSON failed")
-            view.findViewById<TextView>(R.id.instructionsText).text = "Bad thing happened, send help"
         }
     }
 }
