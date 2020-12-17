@@ -202,24 +202,6 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
 
         // NOTE(lucas): Finish test button
         button.setOnClickListener {
-            var result : Int = 0
-            var maxResult : Int = 0
-            gapSpinners.forEach { spinner ->
-                ++maxResult
-                val choice = spinner.selectedItem as taskData.taskItem.choice
-                if (choice.correct) {
-                    ++result
-                }
-            }
-            val testResult = TestResult(result, maxResult, 0 /* TODO: Use actual difficulty */, System.currentTimeMillis())
-            Log.i("LanProject", "Result: ${testResult.result}/${testResult.maxResult}, ${System.currentTimeMillis()}")
-            /*
-            // NOTE(lucas): Parse the timestamp by doing:
-            val sdf = java.text.SimpleDateFormat("yyyy-MM-dd-HH:mm:ss")
-            val date = java.util.Date(System.currentTimeMillis())
-            sdf.format(date)
-            // (SimpleDateFormat("yyyy-MM-dd-HH:mm:ss")).format(java.util.Date(System.currentTimeMillis()))
-             */
             (activity as TaskContainer).finishTest()
         }
     }

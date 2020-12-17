@@ -38,9 +38,19 @@ class TaskContainer : AppCompatActivity() {
             numQuestions++
         }
 
+        val testResult = TestResult(tot, numQuestions, 0 /* TODO: Use actual difficulty */, System.currentTimeMillis())
+        /*
+        // NOTE(lucas): Parse the timestamp by doing:
+        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd-HH:mm:ss")
+        val date = java.util.Date(System.currentTimeMillis())
+        sdf.format(date)
+        // (SimpleDateFormat("yyyy-MM-dd-HH:mm:ss")).format(java.util.Date(System.currentTimeMillis()))
+         */
+
         Log.i("LanProject", "======================================")
         Log.i("LanProject", "Total score: $tot out of $numQuestions")
         Log.i("LanProject", "======================================")
+        // TODO: implement result display
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
