@@ -1,18 +1,23 @@
 package com.example.lanproject
 
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.core.text.HtmlCompat
 import kotlinx.android.synthetic.main.fragment_task_help_placeholder.view.*
 import kotlinx.android.synthetic.main.fragment_task1.*
 import kotlinx.android.synthetic.main.gap_spinner.*
 import kotlinx.android.synthetic.main.gap_spinner.view.*
+import kotlinx.android.synthetic.main.gap_spinner_text.*
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
@@ -182,6 +187,10 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
                 )
                 child.findViewById<Spinner>(R.id.gapSpinner).adapter = adapter
                 (activity as TaskContainer).addQuestionCallback {
+                    var spinner = child.gapSpinner as Spinner
+                    spinner.isEnabled = false
+                    spinner.isClickable = false
+
                     if ((child.gapSpinner.selectedItem as taskData.taskItem.choice).correct) 1
                     else 0
                 }
