@@ -208,11 +208,14 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
 
                 gapSpinners.add(child.gapSpinner)
             }
-            // gapSpinners.forEach { spinner ->
-            //     Log.i("LanProject", spinner.selectedItem.toString())
-            // }
         } catch (e: Exception) {
             Log.e("LanProject", "JSON failed (${e.message})")
+        }
+
+        button.setOnClickListener {
+            gapSpinners.forEach { spinner ->
+                Log.i("LanProject", spinner.selectedItem.toString())
+            }
         }
     }
 }
