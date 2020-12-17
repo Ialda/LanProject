@@ -163,21 +163,6 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
                   ]
                 }
             """.trimIndent()))
-            Log.i("LanProject", testData.title)
-            Log.i("LanProject", testData.instructions)
-            Log.i("LanProject", if (testData.random) "random=true" else "random=false")
-            Log.i("LanProject", if (testData.randomiseChoices) "randomiseChoices=true" else "randomiseChoices=false")
-            Log.i("LanProject", if (testData.showQuestionNumbers) "showQuestionNumbers=true" else "showQuestionNumbers=false")
-            Log.i("LanProject", if (testData.sectionsOnSamePage) "sectionsOnSamePage=true" else "sectionsOnSamePage=false")
-            testData.items.forEach{
-                Log.i("LanProject", "\t"+it.text1)
-                    it.choices.forEach{
-                        Log.i("LanProject", "\t\t"+it.text)
-                        Log.i("LanProject", "\t\t"+if (it.correct) "correct=true" else "correct=false")
-                        Log.i("LanProject", "\t\t"+it.feedback)
-                    }
-                Log.i("LanProject", "\t"+it.text2)
-            }
 
             view.findViewById<TextView>(R.id.instructionsText).text = testData.instructions
             val linearLayout = view.findViewById<LinearLayout>(R.id.linearLayout)
