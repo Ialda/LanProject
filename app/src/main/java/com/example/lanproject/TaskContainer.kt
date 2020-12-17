@@ -14,15 +14,13 @@ class TaskContainer : AppCompatActivity() {
         override fun createFragment(position: Int): Fragment = pages[position]
     }
 
-    // TODO: Fan, this is quick and dirty
-    // Store java class names instead of initialized fragments...
     // Fragments for Tasks 1-5
     private val taskFragments = listOf(
-        TaskFragment1(),
-        TaskListeningFragment(),
-        TaskHelpPlaceholder(), // placeholders
-        TaskHelpPlaceholder(),
-        TaskHelpPlaceholder()
+        TaskFragment1::class.java,
+        TaskListeningFragment::class.java,
+        TaskHelpPlaceholder::class.java, // placeholders
+        TaskHelpPlaceholder::class.java,
+        TaskHelpPlaceholder::class.java
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +29,7 @@ class TaskContainer : AppCompatActivity() {
 
         val viewPager = findViewById<ViewPager2>(R.id.viewPager)
         viewPager.adapter = PageAdapter(this, listOf(
-            taskFragments[intent.getIntExtra("taskID", 0)], // Task Fragment
+            taskFragments[intent.getIntExtra("taskID", 0)].newInstance(), // Task Fragment
             TaskHelpPlaceholder()                                             // Help Fragment
         ))
 
