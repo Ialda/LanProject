@@ -190,6 +190,10 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
                     it.choices
                 )
                 child.findViewById<Spinner>(R.id.gapSpinner).adapter = adapter
+                (activity as TaskContainer).addQuestionCallback {
+                    if ((child.gapSpinner.selectedItem as taskData.taskItem.choice).correct) 1
+                    else 0
+                }
 
                 val text2 = TextView(view.context)
                 text2.text = HtmlCompat.fromHtml("..."+it.text2, HtmlCompat.FROM_HTML_MODE_LEGACY)
@@ -225,6 +229,7 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
             sdf.format(date)
             // (SimpleDateFormat("yyyy-MM-dd-HH:mm:ss")).format(java.util.Date(System.currentTimeMillis()))
              */
+            (activity as TaskContainer).finishTest()
         }
     }
 }
