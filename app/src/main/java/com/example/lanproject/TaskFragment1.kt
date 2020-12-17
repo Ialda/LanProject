@@ -7,16 +7,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.core.text.HtmlCompat
 import kotlinx.android.synthetic.main.fragment_task_help_placeholder.view.*
 import kotlinx.android.synthetic.main.fragment_task1.*
 import kotlinx.android.synthetic.main.gap_spinner.*
 import kotlinx.android.synthetic.main.gap_spinner.view.*
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+
+data class TestResult(
+    var result : Int,
+    var maxResult : Int,
+    val difficulty : Int, // TODO(lucas): Of which type should we represent the difficulty?
+    val timeStamp : Long,
+) {
+
+}
 
 class TaskFragment1 : Fragment(R.layout.fragment_task1) {
 
@@ -212,10 +220,26 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
             Log.e("LanProject", "JSON failed (${e.message})")
         }
 
+        // NOTE(lucas): Finish test button
         button.setOnClickListener {
+            var result : Int = 0
+            var maxResult : Int = 0
             gapSpinners.forEach { spinner ->
-                Log.i("LanProject", spinner.selectedItem.toString())
+                ++maxResult
+                val choice = spinner.selectedItem as taskData.taskItem.choice
+                if (choice.correct) {
+                    ++result
+                }
             }
+            val testResult = TestResult(result, maxResult, 0 /* TODO: Use actual difficulty */, System.currentTimeMillis())
+            Log.i("LanProject", "Result: ${testResult.result}/${testResult.maxResult}, ${System.currentTimeMillis()}")
+            /*
+            // NOTE(lucas): Parse the timestamp by doing:
+            val sdf = java.text.SimpleDateFormat("yyyy-MM-dd-HH:mm:ss")
+            val date = java.util.Date(System.currentTimeMillis())
+            sdf.format(date)
+            // (SimpleDateFormat("yyyy-MM-dd-HH:mm:ss")).format(java.util.Date(System.currentTimeMillis()))
+             */
         }
     }
 }
