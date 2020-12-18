@@ -27,6 +27,7 @@ class TaskContainer : AppCompatActivity() {
     }
 
     // Fragments for Tasks 1-5
+    // TODO: only show the tasks we have in the UI
     private val taskFragments = listOf(
         TaskFragment1::class.java,
         TaskListeningFragment::class.java,
@@ -37,10 +38,28 @@ class TaskContainer : AppCompatActivity() {
 
     private val questionCallbacks = mutableListOf<() -> Int>()
 
+    // Call this function to add a callback to be run when the user has finished the test.
+    // Each question in the test should have its own callback which disables further input,
+    // marks the answer as right or wrong in the UI and returns how many points the user got
+    // on the question.
+    // Usage example (from task fragment):
+    // (activity as TaskContainer).addQuestionCallback {
+    //      if (userAnsweredCorrectly)
+    //          return 1
+    //      else
+    //          return 0
+    // }
+    // NOTE(linus): For now, we assume each question can only give you one point. You can return
+    // more than one point, but the calculated max score will be wrong. EZ fix, tell me if ya need it
     fun addQuestionCallback(callback: () -> Int) {
         questionCallbacks.add(callback)
     }
 
+    // Call this function when the user wants to finish the test (i.e. when they press the "finish
+    // test" button). It will call all the registered question callbacks, calculate the score and
+    // show the score-UI to the user.
+    // Example:
+    // (activity as TaskContainer).finishTest()
     fun finishTest() {
         var tot = 0
         var numQuestions = 0
@@ -58,9 +77,9 @@ class TaskContainer : AppCompatActivity() {
         // (SimpleDateFormat("yyyy-MM-dd-HH:mm:ss")).format(java.util.Date(System.currentTimeMillis()))
          */
 
-        Log.i("LanProject", "======================================")
-        Log.i("LanProject", "Total score: $tot out of $numQuestions")
-        Log.i("LanProject", "======================================")
+        Log.d("LanProject", "======================================")
+        Log.d("LanProject", "Total score: $tot out of $numQuestions")
+        Log.d("LanProject", "======================================")
 
         bottomSheet.visibility = View.VISIBLE
         val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
@@ -82,8 +101,6 @@ class TaskContainer : AppCompatActivity() {
         val circleProg = Math.max(prog / max.toFloat(), 0.05f)
         val circle1Rotation = /*-270f +*/ 360f * Math.min(0.5f, circleProg)
 
-        Log.i("LanProject", "Rot: $circle1Rotation, CircleProg: $circleProg")
-
         scoreColorCircle2.visibility = View.INVISIBLE
         scoreText.visibility = View.INVISIBLE
 
@@ -102,7 +119,6 @@ class TaskContainer : AppCompatActivity() {
                     override fun onAnimationStart(animation: Animation?) {}
                     override fun onAnimationEnd(animation: Animation?) {
                         scoreColorCircle2.visibility = View.VISIBLE
-                        Log.i("LanProject", "Animation1End. GAHGAHGAH")
 
                         val circle2Rotation = /*-90f +*/ 360f * Math.max(0f, circleProg - 0.5f)
                         scoreColorCircle2.startAnimation(RotateAnimation(
