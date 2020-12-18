@@ -10,10 +10,10 @@
         android:id="@+id/PlainTextUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
         android:autofillHints=""
         android:ems="10"
         android:gravity="center"
@@ -30,11 +30,11 @@
         android:id="@+id/PasswordUserpswd"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
         android:autofillHints=""
         android:ems="10"
         android:gravity="center"
@@ -42,7 +42,6 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.300"
         app:layout_constraintTop_toBottomOf="@+id/PlainTextUsername" />
 
     <Button
@@ -53,20 +52,23 @@
         android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.133"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PasswordUserpswd"
-        app:layout_constraintVertical_bias="0.345" />
+        app:layout_constraintVertical_bias="0.342" />
 
     <Button
         android:id="@+id/ButtonRegister"
         android:layout_width="160dp"
         android:layout_height="60dp"
-        android:layout_marginTop="30dp"
         android:gravity="center"
         android:onClick="RegisterPageview"
         android:text="@string/register"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.866"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/PasswordUserpswd"
+        app:layout_constraintVertical_bias="0.342" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

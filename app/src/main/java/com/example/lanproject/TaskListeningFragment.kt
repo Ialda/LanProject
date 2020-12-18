@@ -7,66 +7,57 @@ import android.os.Handler
 import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ProgressBar
-import android.widget.SeekBar
+import android.widget.*
 import kotlinx.coroutines.delay
 
 class TaskListeningFragment : Fragment(R.layout.fragment_task_listening) {
     var mediaPlayer: MediaPlayer? = null
-    //var playButton: Button? = null;
-    //var pauseButton: Button? = null;
     var playPauseButton: ImageButton? = null;
-    //var stopButton: Button? = null;
     var seekBar: SeekBar? = null;
+    var mediaTime: TextView? = null;
+    var timeSek:Int = 0;
+    var timeMin:Int = 0;
+    var timeLengthSek:Int = 0;
+    var timeLengthMin:Int = 0;
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
         mediaPlayer = MediaPlayer.create(context, R.raw.testsound)
-        //playButton = getView()?.findViewById(R.id.PlaySound)
-        //playButton?.visibility=View.INVISIBLE
-        //pauseButton = getView()?.findViewById(R.id.PauseSound)
         playPauseButton = getView()?.findViewById(R.id.PlayPauseSound)
-        //playPauseButton?.setBackgroundColor(Color.rgb(36,188,42)) // For Testing
-        //stopButton = getView()?.findViewById(R.id.StopSound)
         seekBar = getView()?.findViewById(R.id.seekBar)
-        //pauseButton?.visibility = View.INVISIBLE
-        //playButton?.setOnClickListener{
-        //    PlaySound()
-        //}
-        //pauseButton?.setOnClickListener {
-        //    PauseSound()
-        //}
-        // Grön: app:backgroundTint="#24BC2A"
-        // Röd: app:backgroundTint="#E12614"
-        // ic_baseline_play_arrow_24 tint: android:tint="?attr/colorControlNormal">
+        mediaTime = getView()?.findViewById(R.id.mediaTime)
+
         playPauseButton?.setOnClickListener {
             if(mediaPlayer?.isPlaying == true) {
                 PauseSound()
                 playPauseButton?.setImageResource(R.drawable.ic_baseline_play_arrow_24)
-                //playPauseButton?.setBackgroundColor(Color.rgb(36,188,42))
-                //playPauseButton?.setBackgroundColor(Color.GREEN)
-                //background?.colorFilter(Color.GREEN)
-                //setColorFilter(Color.GREEN)
-                //playPauseButton?.setBackgroundColor(getResources().getColor(R.color.teal_700))
-                //playPauseButton?.setColorFilter());
-                //playPauseButton?.setColorFilter(Color.GREEN)
-                //playPauseButton?.setColorFilter(resources.getColor(R.color.purple_500))
-                //playButton?.setCompoundDrawables(context.(android.R.drawable.ic_media_pause))
-                //android.R.drawable.ic_media_pause
             }
             else {
                 PlaySound()
                 playPauseButton?.setImageResource(R.drawable.ic_baseline_pause_24)
-                //playPauseButton?.setBackgroundColor(getResources().getColor(R.color.purple_500))
-                //playPauseButton?.setBackgroundColor(Color.BLUE)
             }
         }
+
+        var rawTimeLength = mediaPlayer?.duration!!
+
+        timeLengthSek = (rawTimeLength % 60000)/1000
+        timeLengthMin = rawTimeLength/60000
+
+        mediaTime?.text = ("00:00 / " + timeLengthMin.toString() + ":" + timeLengthSek.toString())
 
         seekBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if(fromUser) mediaPlayer?.seekTo(progress)
+
+                timeSek = (progress % 60000)/1000
+                timeMin = progress/60000
+
+
+                mediaTime?.text = (timeMin.toString() + ":" + timeSek.toString() + " / " +
+                        timeLengthMin.toString() + ":" + timeLengthSek.toString())
+
+
+                //totalTime?.text = (timeLengthMin.toString() + ":" + timeLengthSek.toString())
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -77,30 +68,14 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening) {
         })
         initSeekbar()
 
-        //stopButton?.setOnClickListener{
-            //PauseSound()
-        //    ResetSound()
-        //}
     }
 
     fun PlaySound() {
         mediaPlayer?.start()
-        //playButton?.visibility = View.INVISIBLE
-        //pauseButton?.visibility = View.VISIBLE
     }
 
     fun PauseSound() {
         mediaPlayer?.pause()
-        //pauseButton?.visibility = View.INVISIBLE
-        //playButton?.visibility = View.VISIBLE
-    }
-
-    fun ResetSound() {
-
-        mediaPlayer?.stop()
-        mediaPlayer = MediaPlayer.create(context, R.raw.testsound)
-        //pauseButton?.visibility = View.INVISIBLE
-        //playButton?.visibility = View.VISIBLE
     }
 
     private fun initSeekbar() {
