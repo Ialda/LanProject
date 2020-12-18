@@ -5,7 +5,6 @@
     <string name="login">Login</string>
     <string name="activity_1">Activity 1</string>
     <string name="activity_2">Activity 2</string>
-    <string name="activity_3">Activity 3</string>
     <string name="activity_4">Activity 4</string>
     <string name="activity_5">Activity 5</string>
     <string name="chose_your_desired_activity">Choose your desired activity</string>
@@ -27,11 +26,8 @@
     <string name="history">History:</string>
 
     <string-array name="ActivityList">
-        <item>Activity 1</item>
-        <item>Activity 2</item>
-        <item>Activity 3</item>
-        <item>Activity 4</item>
-        <item>Activity 5</item>
+        <item>Reading Task</item>
+        <item>Listening Task</item>
     </string-array>
 
     <!-- TODO remove placeholders -->

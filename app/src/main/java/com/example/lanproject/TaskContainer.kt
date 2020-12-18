@@ -31,9 +31,6 @@ class TaskContainer : AppCompatActivity() {
     private val taskFragments = listOf(
         TaskFragment1::class.java,
         TaskListeningFragment::class.java,
-        TaskHelpPlaceholder::class.java, // placeholders
-        TaskHelpPlaceholder::class.java,
-        TaskHelpPlaceholder::class.java
     )
 
     private val questionCallbacks = mutableListOf<() -> Int>()
@@ -68,7 +65,7 @@ class TaskContainer : AppCompatActivity() {
             numQuestions++
         }
 
-        val testResult = TestResult(tot, numQuestions, 0 /* TODO: Use actual difficulty */, System.currentTimeMillis())
+        val testResult = TestResult(tot, numQuestions, intent.getIntExtra("difficulty", 0), System.currentTimeMillis())
         /*
         // NOTE(lucas): Parse the timestamp by doing:
         val sdf = java.text.SimpleDateFormat("yyyy-MM-dd-HH:mm:ss")
@@ -172,8 +169,8 @@ class TaskContainer : AppCompatActivity() {
 
         val viewPager = findViewById<ViewPager2>(R.id.viewPager)
         viewPager.adapter = PageAdapter(this, listOf(
-            taskFragments[intent.getIntExtra("taskID", 0)].newInstance(), // Task Fragment
-            TaskHelpPlaceholder()                                             // Help Fragment
+            taskFragments[intent.getIntExtra("taskID", 0)].newInstance(),   // Task Fragment
+            TaskHelpPlaceholder()                                           // Help Fragment
         ))
 
         val tabTexts = listOf("Task", "Learning Materials")
