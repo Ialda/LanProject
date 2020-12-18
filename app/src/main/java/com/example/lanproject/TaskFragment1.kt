@@ -215,6 +215,7 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1) {
 
         // NOTE(lucas): Finish test button
         button.setOnClickListener {
+            button.visibility = View.INVISIBLE
             (activity as TaskContainer).finishTest()
         }
     }
