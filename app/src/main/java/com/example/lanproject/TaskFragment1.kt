@@ -13,10 +13,15 @@ import kotlinx.android.synthetic.main.fragment_task1.*
 import kotlinx.android.synthetic.main.gap_spinner.view.*
 import org.json.JSONObject
 
-class TaskFragment1(private val difficulty: Int) : Fragment(R.layout.fragment_task1) {
+class TaskFragment1 : Fragment(R.layout.fragment_task1), TaskFragment {
 
     private lateinit var inflater: LayoutInflater
     private var gapSpinners = mutableListOf<Spinner>()
+    private var difficulty: Int? = null
+
+    override fun init(difficulty: Int) {
+        this.difficulty = difficulty
+    }
 
     // construct in try-catch to avoid json parse errors. TODO: (this is lazy do better error handling in class)
     // json: a JSONObject from the api to parse

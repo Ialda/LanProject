@@ -170,10 +170,11 @@ class TaskContainer : AppCompatActivity() {
         // TODO: Error handling for below, or is it actually better to have an outright crash
         //  (because something would have gone entirely wrong if an incorrect class found its way)
         //  into here
-        val taskFragment = taskFragments[intent.getIntExtra("taskID", 0)].getConstructor(Int::class.java)
+        val taskFragment = taskFragments[intent.getIntExtra("taskID", 0)].newInstance() as TaskFragment
+        taskFragment.init(intent.getIntExtra("difficulty", 0))
         viewPager.adapter = PageAdapter(this, listOf(
-            taskFragment.newInstance(intent.getIntExtra("difficulty", 0)),  // Task Fragment
-            TaskHelpPlaceholder()                                           // Help Fragment
+            taskFragment as Fragment,   // Task Fragment
+            TaskHelpPlaceholder()       // Help Fragment
         ))
 
         val tabTexts = listOf("Task", "Learning Materials")

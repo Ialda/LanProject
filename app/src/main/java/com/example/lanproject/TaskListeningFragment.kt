@@ -10,15 +10,20 @@ import android.view.View
 import android.widget.*
 import kotlinx.coroutines.delay
 
-class TaskListeningFragment(protected val difficulty: Int) : Fragment(R.layout.fragment_task_listening) {
+class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFragment {
     var mediaPlayer: MediaPlayer? = null
     var playPauseButton: ImageButton? = null;
     var seekBar: SeekBar? = null;
     var mediaTime: TextView? = null;
-    var timeSek:Int = 0;
-    var timeMin:Int = 0;
-    var timeLengthSek:Int = 0;
-    var timeLengthMin:Int = 0;
+    var timeSek: Int = 0;
+    var timeMin: Int = 0;
+    var timeLengthSek: Int = 0;
+    var timeLengthMin: Int = 0;
+    private var difficulty : Int? = null
+
+    override fun init(difficulty: Int) {
+        this.difficulty = difficulty
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
