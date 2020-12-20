@@ -167,8 +167,12 @@ class TaskContainer : AppCompatActivity() {
         setContentView(R.layout.activity_task_container)
 
         val viewPager = findViewById<ViewPager2>(R.id.viewPager)
+        // TODO: Error handling for below, or is it actually better to have an outright crash
+        //  (because something would have gone entirely wrong if an incorrect class found its way)
+        //  into here
+        val taskFragment = taskFragments[intent.getIntExtra("taskID", 0)].getConstructor(Int::class.java)
         viewPager.adapter = PageAdapter(this, listOf(
-            taskFragments[intent.getIntExtra("taskID", 0)].newInstance(),   // Task Fragment
+            taskFragment.newInstance(intent.getIntExtra("difficulty", 0)),  // Task Fragment
             TaskHelpPlaceholder()                                           // Help Fragment
         ))
 

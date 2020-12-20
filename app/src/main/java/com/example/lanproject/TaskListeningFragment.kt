@@ -10,7 +10,7 @@ import android.view.View
 import android.widget.*
 import kotlinx.coroutines.delay
 
-class TaskListeningFragment : Fragment(R.layout.fragment_task_listening) {
+class TaskListeningFragment(protected val difficulty: Int) : Fragment(R.layout.fragment_task_listening) {
     var mediaPlayer: MediaPlayer? = null
     var playPauseButton: ImageButton? = null;
     var seekBar: SeekBar? = null;

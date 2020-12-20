@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_task1.*
 import kotlinx.android.synthetic.main.gap_spinner.view.*
 import org.json.JSONObject
 
-class TaskFragment1 : Fragment(R.layout.fragment_task1) {
+class TaskFragment1(private val difficulty: Int) : Fragment(R.layout.fragment_task1) {
 
     private lateinit var inflater: LayoutInflater
     private var gapSpinners = mutableListOf<Spinner>()
