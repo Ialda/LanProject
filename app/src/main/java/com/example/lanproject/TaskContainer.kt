@@ -167,9 +167,14 @@ class TaskContainer : AppCompatActivity() {
         setContentView(R.layout.activity_task_container)
 
         val viewPager = findViewById<ViewPager2>(R.id.viewPager)
+        // TODO: Error handling for below, or is it actually better to have an outright crash
+        //  (because something would have gone entirely wrong if an incorrect class found its way)
+        //  into here
+        val taskFragment = taskFragments[intent.getIntExtra("taskID", 0)].newInstance() as TaskFragment
+        taskFragment.init(intent.getIntExtra("difficulty", 0))
         viewPager.adapter = PageAdapter(this, listOf(
-            taskFragments[intent.getIntExtra("taskID", 0)].newInstance(),   // Task Fragment
-            TaskHelpPlaceholder()                                           // Help Fragment
+            taskFragment as Fragment,   // Task Fragment
+            TaskHelpPlaceholder()       // Help Fragment
         ))
 
         val tabTexts = listOf("Task", "Learning Materials")
@@ -193,7 +198,7 @@ class TaskContainer : AppCompatActivity() {
 
         btmSheetReturn.setOnClickListener {
             //TODO: submit test to db when ready
-            startActivity(Intent(this, LandingPageActivity::class.java))
+            //startActivity(Intent(this, LandingPageActivity::class.java))
             finish()
         }
     }
