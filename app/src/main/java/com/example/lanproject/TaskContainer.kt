@@ -193,7 +193,7 @@ class TaskContainer : AppCompatActivity() {
 
         btmSheetReturn.setOnClickListener {
             //TODO: submit test to db when ready
-            startActivity(Intent(this, LandingPageActivity::class.java))
+            //startActivity(Intent(this, LandingPageActivity::class.java))
             finish()
         }
     }
