@@ -18,12 +18,11 @@
     <string name="new_test">New Test</string>
     <string name="logout">Logout</string>
     <string name="confirmPassword">Confirm Password</string>
-    <string name="activity1_points_10_10_diff_medium_date_14_12_20">Activity1: Points: 10/10 Diff: Medium Date: 14/12-20</string>
-    <string name="activity2_points_3_10_diff_easy_date_14_12_20">Activity2: Points: 3/10 Diff: Easy Date: 14/12-20</string>
-    <string name="activity3_points_7_10_diff_hard_date_14_12_20">Activity3: Points: 7/10 Diff: Hard Date: 14/12-20</string>
-    <string name="activity1_points_5_10_diff_medium_date_13_12_20">Activity1: Points: 5/10 Diff: Medium Date: 13/12-20</string>
-    <string name="activity2_points_0_10_diff_easy_date_13_12_20">Activity2: Points: 0/10 Diff: Easy Date: 13/12-20</string>
     <string name="history">History:</string>
+    <string name="activity">Activity:</string>
+    <string name="points">Points:</string>
+    <string name="difficulty">Difficulty:</string>
+    <string name="date">Date:</string>
 
     <string-array name="ActivityList">
         <item>Reading Task</item>

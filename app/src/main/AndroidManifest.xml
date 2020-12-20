@@ -15,7 +15,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".LandingPageActivity" />
+        <activity android:name=".LandingPageActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity android:name=".TaskContainer"
             android:parentActivityName=".MainPageActivity">
             <meta-data
