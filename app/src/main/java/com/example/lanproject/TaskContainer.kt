@@ -27,10 +27,9 @@ class TaskContainer : AppCompatActivity() {
     }
 
     // Fragments for Tasks 1-5
-    // TODO: only show the tasks we have in the UI
     private val taskFragments = listOf(
         TaskFragment1::class.java,
-        TaskListeningFragment::class.java,
+        TaskListeningFragment::class.java
     )
 
     private val questionCallbacks = mutableListOf<() -> Int>()
