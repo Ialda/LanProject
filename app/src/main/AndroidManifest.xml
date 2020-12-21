@@ -15,11 +15,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".LandingPageActivity"
-            android:parentActivityName=".MainActivity">
+        <activity android:name=".HistoryPageActivity"
+            android:parentActivityName=".MainPageActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".HistoryPageActivity" />
         </activity>
         <activity android:name=".TaskContainer"
             android:parentActivityName=".MainPageActivity">
@@ -28,10 +28,10 @@
                 android:value=".MainPageActivity" />
         </activity>
         <activity android:name=".MainPageActivity">
-            android:parentActivityName=".LandingPageActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LandingPageActivity" />
+                android:value=".MainPageActivity" />
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -32,4 +32,8 @@ class MainPageActivity : AppCompatActivity() {
             "Activity 5" -> {startActivity(Intent(this, TaskContainer::class.java).putExtra("taskID", 4))}
         }*/
     }
+
+    fun ShowHistory(view: View) {
+        startActivity(Intent(this, HistoryPageActivity::class.java))
+    }
 }
