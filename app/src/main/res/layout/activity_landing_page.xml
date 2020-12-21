@@ -7,13 +7,25 @@
     tools:context=".LandingPageActivity">
 
     <Button
+        android:id="@+id/ButtonForTesting"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:onClick="CreateNewHistory"
+        android:text="@string/insert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/ButtonToMainPage"
         android:layout_width="130dp"
         android:layout_height="70dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        android:onClick="CreateNewHistory"
+        android:onClick="MainPageView"
         android:text="@string/new_test"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
