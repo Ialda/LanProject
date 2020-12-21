@@ -23,6 +23,7 @@
     <string name="points">Points:</string>
     <string name="difficulty">Difficulty:</string>
     <string name="date">Date:</string>
+    <string name="insert">Insert</string>
 
     <string-array name="ActivityList">
         <item>Reading Task</item>
