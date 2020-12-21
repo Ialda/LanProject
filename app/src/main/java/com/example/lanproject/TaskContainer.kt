@@ -64,6 +64,7 @@ class TaskContainer : AppCompatActivity() {
             numQuestions++
         }
 
+        //TODO Store Date, not Long
         val testResult = TestResult(tot, numQuestions, intent.getIntExtra("difficulty", 0), System.currentTimeMillis())
         /*
         // NOTE(lucas): Parse the timestamp by doing:
