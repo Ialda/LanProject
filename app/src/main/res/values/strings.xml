@@ -7,8 +7,8 @@
     <string name="activity_2">Activity 2</string>
     <string name="activity_4">Activity 4</string>
     <string name="activity_5">Activity 5</string>
-    <string name="chose_your_desired_activity">Choose your desired activity</string>
-    <string name="start">Start test</string>
+    <string name="chose_your_desired_activity">Choose your desired task</string>
+    <string name="start">Start task</string>
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
@@ -18,7 +18,7 @@
     <string name="new_test">New Test</string>
     <string name="logout">Logout</string>
     <string name="confirmPassword">Confirm Password</string>
-    <string name="history">History:</string>
+    <string name="history">Task history</string>
     <string name="activity">Activity:</string>
     <string name="points">Points:</string>
     <string name="difficulty">Difficulty:</string>
