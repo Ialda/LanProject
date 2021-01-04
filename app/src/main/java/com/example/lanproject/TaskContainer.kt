@@ -198,9 +198,10 @@ class TaskContainer : AppCompatActivity() {
         bottomSheet.visibility = View.GONE
 
         btmSheetReturn.setOnClickListener {
-            //TODO: submit test to db when ready
-            //startActivity(Intent(this, LandingPageActivity::class.java))
-            finish()
+            // TODO: submit test to db when ready
+            // startActivity(Intent(this, LandingPageActivity::class.java))
+            startActivity(Intent(this, MainPageActivity::class.java))
+            //finish()
         }
     }
 }

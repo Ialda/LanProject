@@ -9,14 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setMargins
 import java.util.*
 
-class LandingPageActivity : AppCompatActivity() {
+class HistoryPageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_landing_page)
-    }
-
-    fun MainPageView(view: View) {
-        startActivity(Intent(this, MainPageActivity::class.java))
+        setContentView(R.layout.activity_history_page)
     }
 
     fun CreateNewHistory(view: View) {
