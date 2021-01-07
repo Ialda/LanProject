@@ -48,7 +48,6 @@
         android:id="@+id/ButtonLogin"
         android:layout_width="160dp"
         android:layout_height="60dp"
-        android:onClick="LandingPageView"
         android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
