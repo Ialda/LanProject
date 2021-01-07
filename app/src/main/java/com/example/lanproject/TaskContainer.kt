@@ -212,8 +212,8 @@ class TaskContainer : AppCompatActivity() {
         btmSheetReturn.setOnClickListener {
             // TODO: submit test to db when ready
             // startActivity(Intent(this, LandingPageActivity::class.java))
-            startActivity(Intent(this, MainPageActivity::class.java))
-            //finish()
+            // startActivity(Intent(this, MainPageActivity::class.java))
+            finish()
         }
 
         // Updates the value, doesn't actually call finishTest(). That is left to the fragment,
