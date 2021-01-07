@@ -7,8 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.cardview.widget.CardView
 import androidx.core.text.HtmlCompat
+import kotlinx.android.synthetic.main.edit_text.*
+import kotlinx.android.synthetic.main.edit_text.view.*
 import kotlinx.android.synthetic.main.fragment_task1.*
 import kotlinx.android.synthetic.main.gap_spinner.view.*
 import org.json.JSONObject
@@ -194,10 +195,10 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1), TaskFragment {
                     else 0
 
                     if (scoreValue == 1) {
-                        child.successIcon.visibility = View.VISIBLE
+                        child.findViewById<ImageView>(R.id.successIcon).visibility = View.VISIBLE
                     }
                     else {
-                        child.failIcon.visibility = View.VISIBLE
+                        child.findViewById<ImageView>(R.id.failIcon).visibility = View.VISIBLE
                         child.feedback.visibility = View.VISIBLE
                         child.feedbackText.text = (child.gapSpinner.selectedItem as taskData.taskItem.choice).feedback
                     }
