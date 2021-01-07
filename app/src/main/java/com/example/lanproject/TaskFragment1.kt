@@ -64,6 +64,17 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1), TaskFragment {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        val spinnerSelections = arrayListOf<Int>()
+        gapSpinners.forEach{
+            spinnerSelections.add(it.selectedItemPosition)
+        }
+
+        outState.putIntegerArrayList("spinnerSelections", spinnerSelections)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
 
@@ -222,6 +233,21 @@ class TaskFragment1 : Fragment(R.layout.fragment_task1), TaskFragment {
         // NOTE(lucas): Finish test button
         button.setOnClickListener {
             button.visibility = View.INVISIBLE
+            (activity as TaskContainer).finishTest()
+        }
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        // Restore saved selections
+        savedInstanceState?.getIntegerArrayList("spinnerSelections")?.forEachIndexed { index, it ->
+            gapSpinners[index].setSelection(it)
+        }
+
+        // If the test has already been finished, and we are restoring that state, run finishTest()
+        // again to display result.
+        if ((activity as TaskContainer).finishedTest) {
             (activity as TaskContainer).finishTest()
         }
     }
