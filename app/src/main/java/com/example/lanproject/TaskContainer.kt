@@ -31,6 +31,7 @@ class TaskContainer : AppCompatActivity() {
         TaskFragment1::class.java,
         TaskListeningFragment::class.java
     )
+    private lateinit var taskFragment: TaskFragment
 
     private val questionCallbacks = mutableListOf<() -> Int>()
 
@@ -56,7 +57,12 @@ class TaskContainer : AppCompatActivity() {
     // show the score-UI to the user.
     // Example:
     // (activity as TaskContainer).finishTest()
+    var finishedTest: Boolean = false
+        private set
+
     fun finishTest() {
+        finishedTest = true
+
         var tot = 0
         var numQuestions = 0
         questionCallbacks.forEach{
@@ -64,6 +70,7 @@ class TaskContainer : AppCompatActivity() {
             numQuestions++
         }
 
+        //TODO Store Date, not Long
         val testResult = TestResult(tot, numQuestions, intent.getIntExtra("difficulty", 0), System.currentTimeMillis())
         /*
         // NOTE(lucas): Parse the timestamp by doing:
@@ -167,10 +174,16 @@ class TaskContainer : AppCompatActivity() {
         setContentView(R.layout.activity_task_container)
 
         val viewPager = findViewById<ViewPager2>(R.id.viewPager)
-        // TODO: Error handling for below, or is it actually better to have an outright crash
-        //  (because something would have gone entirely wrong if an incorrect class found its way)
-        //  into here
-        val taskFragment = taskFragments[intent.getIntExtra("taskID", 0)].newInstance() as TaskFragment
+
+        taskFragment = if (savedInstanceState != null) {
+            supportFragmentManager.getFragment(savedInstanceState, "taskFragment") as TaskFragment
+        } else {
+            // TODO: Error handling for below, or is it actually better to have an outright crash
+            //  (because something would have gone entirely wrong if an incorrect class found its way)
+            //  into here
+            taskFragments[intent.getIntExtra("taskID", 0)].newInstance() as TaskFragment
+        }
+
         taskFragment.init(intent.getIntExtra("difficulty", 0))
         viewPager.adapter = PageAdapter(this, listOf(
             taskFragment as Fragment,   // Task Fragment
@@ -199,8 +212,19 @@ class TaskContainer : AppCompatActivity() {
         btmSheetReturn.setOnClickListener {
             // TODO: submit test to db when ready
             // startActivity(Intent(this, LandingPageActivity::class.java))
-            startActivity(Intent(this, MainPageActivity::class.java))
-            //finish()
+            // startActivity(Intent(this, MainPageActivity::class.java))
+            finish()
         }
+
+        // Updates the value, doesn't actually call finishTest(). That is left to the fragment,
+        // as it must register all its questions first
+        finishedTest = savedInstanceState?.getBoolean("finishedTest") ?: false
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putBoolean("finishedTest", finishedTest)
+        supportFragmentManager.putFragment(outState, "taskFragment", taskFragment as Fragment)
     }
 }

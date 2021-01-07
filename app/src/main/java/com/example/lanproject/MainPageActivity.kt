@@ -3,6 +3,7 @@ package com.example.lanproject
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Spinner
@@ -20,9 +21,8 @@ class MainPageActivity : AppCompatActivity() {
         val extras = Bundle()
         extras.putInt("taskID", Activity.selectedItemPosition)
         extras.putInt("difficulty", Difficulty.progress)
-
         startActivity(Intent(this, TaskContainer::class.java).putExtras(extras))
-        finish()
+        //finish()
 
         /*when (Activity.selectedItem.toString()) {
             "Activity 1" -> {startActivity(Intent(this, TaskContainer::class.java).putExtra("taskID", 0))} // NOTE (linus): how do send fragment in intent? :/
