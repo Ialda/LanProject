@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="activity_margin">16dp</dimen>
+    <dimen name="activity_button">60dp</dimen>
+    <dimen name="activity_basic_spinner">46dp</dimen>
 </resources>
