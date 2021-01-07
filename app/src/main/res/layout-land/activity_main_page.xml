@@ -25,7 +25,7 @@
 
                 <TextView
                     android:id="@+id/TextViewTitlePrompt"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/activity_margin"
                     android:gravity="center"
@@ -38,7 +38,7 @@
 
                 <TextView
                     android:id="@+id/textViewTitlePrompt"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/activity_margin"
                     android:layout_marginLeft="@dimen/activity_margin"
@@ -56,7 +56,7 @@
                 <Button
                     android:id="@+id/ButtonStartActivity"
                     android:layout_width="wrap_content"
-                    android:layout_height="70dp"
+                    android:layout_height="@dimen/activity_button"
                     android:layout_marginStart="@dimen/activity_margin"
                     android:layout_marginLeft="@dimen/activity_margin"
                     android:layout_marginTop="64dp"
@@ -155,7 +155,7 @@
                 <Button
                     android:id="@+id/ButtonToHistory"
                     android:layout_width="wrap_content"
-                    android:layout_height="70dp"
+                    android:layout_height="@dimen/activity_button"
                     android:layout_marginStart="@dimen/activity_margin"
                     android:layout_marginLeft="@dimen/activity_margin"
                     android:layout_marginTop="64dp"
