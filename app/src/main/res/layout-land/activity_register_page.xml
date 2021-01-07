@@ -21,6 +21,7 @@
                 android:layout_height="65dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
                 android:background="@android:drawable/editbox_background"
@@ -33,7 +34,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.178" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <EditText
                 android:id="@+id/PasswordRegisterpswd"

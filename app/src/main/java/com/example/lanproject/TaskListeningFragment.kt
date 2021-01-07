@@ -1,5 +1,6 @@
 package com.example.lanproject
 
+import android.content.res.Configuration
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -55,8 +56,14 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
         }
     }
 
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
+
+        setRetainInstance(true)
 
         try {
             val testData = TaskData(JSONObject("""
@@ -143,10 +150,18 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
             }
 
             // TODO: Use the JSON data to see which audio file we should use for this test
-            mediaPlayer = MediaPlayer.create(context, R.raw.testsound)
+            if (mediaPlayer == null)
+            {
+                mediaPlayer = MediaPlayer.create(context, R.raw.testsound)
+            }
             playPauseButton = getView()?.findViewById(R.id.PlayPauseSound)
             seekBar = getView()?.findViewById(R.id.seekBar)
             mediaTime = getView()?.findViewById(R.id.mediaTime)
+
+            if(mediaPlayer?.isPlaying == true)
+            {
+                playPauseButton?.setImageResource(R.drawable.ic_baseline_pause_24)
+            }
 
             playPauseButton?.setOnClickListener {
                 if(mediaPlayer?.isPlaying == true) {
@@ -195,6 +210,8 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
         finishTestButton.setOnClickListener {
             it.visibility = View.INVISIBLE
             (activity as TaskContainer).finishTest()
+            mediaPlayer?.release()
+            playPauseButton?.visibility = View.INVISIBLE
         }
     }
 
