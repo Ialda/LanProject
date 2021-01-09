@@ -21,10 +21,10 @@ import java.io.File
 class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFragment {
     //var mediaPlayer: MediaPlayer? = null
     private lateinit var viewModel: TaskListeningViewModel
-    private val mediaPlayer2 = MediaPlayer().apply {
+    /*private val mediaPlayer2 = MediaPlayer().apply {
         setOnPreparedListener { start() }
         setOnCompletionListener { reset() }
-    }
+    }*/
     var playPauseButton: ImageButton? = null
     var seekBar: SeekBar? = null
     var mediaTime: TextView? = null
