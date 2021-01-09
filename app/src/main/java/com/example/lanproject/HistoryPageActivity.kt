@@ -5,14 +5,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setMargins
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONObject
 import java.net.URL
 import java.util.*
+import kotlin.text.Charsets.UTF_8
 
 class HistoryPageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,9 +66,51 @@ class HistoryPageActivity : AppCompatActivity() {
 
         val queue = Volley.newRequestQueue(this)
         val url = "https://lwm.sh/~lanproject/GetUserHistory.php"
+
+        val stringRequest =
+                StringRequest(Request.Method.GET, url, Response.Listener<String> { response ->
+
+                    var strRes = response.toString()
+                    var testvalues = strRes.split(";");
+                    TextViewActRes.text = testvalues[0];
+                    TextViewPointRes.text = testvalues[1] + "/" + testvalues[2]
+                    TextViewDiffRes.text = testvalues[3]
+                    TextViewDateRes.text = testvalues[4]
+
+                }, Response.ErrorListener {error ->
+                    if(error.networkResponse == null) {
+                        TextViewActRes.text = "No response"
+                    }
+                    else
+                    {
+                        TextViewActRes.text = "Error!"
+                    }
+                })
+/*
+        val stringRequest =
+                StringRequest(Request.Method.GET, url, Response.Listener<String> { response ->
+
+                    var strRes = response.toString()
+                    TextViewActRes.text = strRes
+
+                }, Response.ErrorListener {error ->
+                    if(error.networkResponse == null) {
+                        TextViewActRes.text = "Networkresponse is null"
+                    }
+                    else {
+                        val errorByte = error.networkResponse.data
+                        val parseError = errorByte.toString(UTF_8)
+                        val errorObj = JSONObject(parseError)
+                        val errorMessage = errorObj.getString("message")
+                        TextViewActRes.text = errorMessage
+                    }
+                    })
+*/
+/*
         val stringRequest = StringRequest(Request.Method.GET, url,
                 { response -> TextViewActRes.text = "Response is: ${response.substring(0, 500)}" },
                 { TextViewActRes.text = "That didn't work!" })
+        */
         queue.add(stringRequest)
 
         TextViewPointRes.text = "$Point/$MaxPoint"
