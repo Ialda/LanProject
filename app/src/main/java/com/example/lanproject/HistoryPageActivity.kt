@@ -21,9 +21,22 @@ class HistoryPageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history_page)
+
+        var i = true
+        var x = 0
+        while (i) {
+            i = CreateNewHistory(x)
+            x += 5
+        }
     }
 
-    fun CreateNewHistory(view: View) {
+    fun CreateNewHistory(x : Int) : Boolean {
+        val X = x
+        //Tillfällig stoppunkt. Behöver fungera dynamiskt mot hur många entries som finns.
+        if (X == 15) {
+            return false
+        }
+
         val HistoryView = findViewById<LinearLayout>(R.id.LinearLayoutRes)
         val HorView = LinearLayout(this)
         val LinearView = LinearLayout(this)
@@ -55,67 +68,26 @@ class HistoryPageActivity : AppCompatActivity() {
         TextViewPoint.text = getString(R.string.points)
         TextViewDiff.text = getString(R.string.difficulty)
         TextViewDate.text = getString(R.string.date)
-        /*var DiffRes = "placeholder"
-        when (ResultList[0].difficulty) {
-            0 -> "Easy"
-            1 -> "Medium"
-            2 -> "Hard"
-        }*/
-        val Point = "3"
-        val MaxPoint = "10"
 
+        //Hämtar för tillfället alla entires, ska endast hämta för inloggad användare!
         val queue = Volley.newRequestQueue(this)
         val url = "https://lwm.sh/~lanproject/GetUserHistory.php"
 
-        val stringRequest =
-                StringRequest(Request.Method.GET, url, Response.Listener<String> { response ->
+        val stringRequest = StringRequest(Request.Method.GET, url, { response ->
+            val strRes = response.toString()
+            val testvalues = strRes.split(";")
+            TextViewActRes.text = testvalues[X]
+            TextViewPointRes.text = testvalues[X + 1] + "/" + testvalues[X + 2]
+            TextViewDiffRes.text = testvalues[X + 3]
+            TextViewDateRes.text = testvalues[X + 4] }, { error ->
+            if(error.networkResponse == null) {
+                TextViewActRes.text = "No response"
+            } else {
+                TextViewActRes.text = "Error!"
+            }
+        })
 
-                    var strRes = response.toString()
-                    var testvalues = strRes.split(";");
-                    TextViewActRes.text = testvalues[0];
-                    TextViewPointRes.text = testvalues[1] + "/" + testvalues[2]
-                    TextViewDiffRes.text = testvalues[3]
-                    TextViewDateRes.text = testvalues[4]
-
-                }, Response.ErrorListener {error ->
-                    if(error.networkResponse == null) {
-                        TextViewActRes.text = "No response"
-                    }
-                    else
-                    {
-                        TextViewActRes.text = "Error!"
-                    }
-                })
-/*
-        val stringRequest =
-                StringRequest(Request.Method.GET, url, Response.Listener<String> { response ->
-
-                    var strRes = response.toString()
-                    TextViewActRes.text = strRes
-
-                }, Response.ErrorListener {error ->
-                    if(error.networkResponse == null) {
-                        TextViewActRes.text = "Networkresponse is null"
-                    }
-                    else {
-                        val errorByte = error.networkResponse.data
-                        val parseError = errorByte.toString(UTF_8)
-                        val errorObj = JSONObject(parseError)
-                        val errorMessage = errorObj.getString("message")
-                        TextViewActRes.text = errorMessage
-                    }
-                    })
-*/
-/*
-        val stringRequest = StringRequest(Request.Method.GET, url,
-                { response -> TextViewActRes.text = "Response is: ${response.substring(0, 500)}" },
-                { TextViewActRes.text = "That didn't work!" })
-        */
         queue.add(stringRequest)
-
-        TextViewPointRes.text = "$Point/$MaxPoint"
-        TextViewDiffRes.text = "Medium"
-        TextViewDateRes.text = Date().toString()
 
         TextViewAct.textSize = 24f
         TextViewPoint.textSize = 24f
@@ -139,5 +111,7 @@ class HistoryPageActivity : AppCompatActivity() {
         HorView.addView(LinearViewRes, LinearParams)
 
         HistoryView.addView(HorView)
+
+        return true
     }
 }
