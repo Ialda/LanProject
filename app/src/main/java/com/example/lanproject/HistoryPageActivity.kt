@@ -7,6 +7,11 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setMargins
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import java.net.URL
 import java.util.*
 
 class HistoryPageActivity : AppCompatActivity() {
@@ -56,7 +61,13 @@ class HistoryPageActivity : AppCompatActivity() {
         val Point = "3"
         val MaxPoint = "10"
 
-        TextViewActRes.text = "Reading"
+        val queue = Volley.newRequestQueue(this)
+        val url = "https://lwm.sh/~lanproject/GetUserHistory.php"
+        val stringRequest = StringRequest(Request.Method.GET, url,
+                { response -> TextViewActRes.text = "Response is: ${response.substring(0, 500)}" },
+                { TextViewActRes.text = "That didn't work!" })
+        queue.add(stringRequest)
+
         TextViewPointRes.text = "$Point/$MaxPoint"
         TextViewDiffRes.text = "Medium"
         TextViewDateRes.text = Date().toString()
