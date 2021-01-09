@@ -86,31 +86,6 @@ class HistoryPageActivity : AppCompatActivity() {
                         TextViewActRes.text = "Error!"
                     }
                 })
-/*
-        val stringRequest =
-                StringRequest(Request.Method.GET, url, Response.Listener<String> { response ->
-
-                    var strRes = response.toString()
-                    TextViewActRes.text = strRes
-
-                }, Response.ErrorListener {error ->
-                    if(error.networkResponse == null) {
-                        TextViewActRes.text = "Networkresponse is null"
-                    }
-                    else {
-                        val errorByte = error.networkResponse.data
-                        val parseError = errorByte.toString(UTF_8)
-                        val errorObj = JSONObject(parseError)
-                        val errorMessage = errorObj.getString("message")
-                        TextViewActRes.text = errorMessage
-                    }
-                    })
-*/
-/*
-        val stringRequest = StringRequest(Request.Method.GET, url,
-                { response -> TextViewActRes.text = "Response is: ${response.substring(0, 500)}" },
-                { TextViewActRes.text = "That didn't work!" })
-        */
         queue.add(stringRequest)
 
         TextViewPointRes.text = "$Point/$MaxPoint"
