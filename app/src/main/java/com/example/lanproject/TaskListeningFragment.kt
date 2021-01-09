@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.edit_text.view.*
 import kotlinx.android.synthetic.main.fragment_task_listening.*
 import org.json.JSONObject
+import java.io.File
 
 class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFragment {
     //var mediaPlayer: MediaPlayer? = null
@@ -24,13 +25,13 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
         setOnPreparedListener { start() }
         setOnCompletionListener { reset() }
     }
-    var playPauseButton: ImageButton? = null;
-    var seekBar: SeekBar? = null;
-    var mediaTime: TextView? = null;
-    var timeSek: Int = 0;
-    var timeMin: Int = 0;
-    var timeLengthSek: Int = 0;
-    var timeLengthMin: Int = 0;
+    var playPauseButton: ImageButton? = null
+    var seekBar: SeekBar? = null
+    var mediaTime: TextView? = null
+    var timeSek: Int = 0
+    var timeMin: Int = 0
+    var timeLengthSek: Int = 0
+    var timeLengthMin: Int = 0
     private var difficulty : Int? = null
     private lateinit var inflater : LayoutInflater
     private var editTextMenus = mutableListOf<EditText>()
@@ -50,6 +51,7 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
         val items = mutableListOf<TaskItem>()
         val title = json.getString("title")
         val instructions = json.getString("instructions")
+        val audio = json.getString("audio")
         init {
             val jsonValues = json.getJSONArray("items")
             for (i in 0 until jsonValues.length()) {
@@ -85,7 +87,6 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(TaskListeningViewModel::class.java)
-        //setRetainInstance(true)
 
         try {
             val testData = TaskData(JSONObject("""
@@ -171,12 +172,13 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
                 editTextMenus.add(child.editText)
             }
 
-            // TODO: Use the JSON data to see which audio file we should use for this test
             if (viewModel.mediaPlayer == null)
             {
-                //val audio:String =
-                viewModel.mediaPlayer = MediaPlayer.create(context, R.raw.testsound)
-                //mediaPlayer = MediaPlayer.create(context, testData.)
+
+                val audio:String = File(testData.audio).nameWithoutExtension
+                //resources.getIdentifier(audio, "raw", activity?.packageName)
+                //viewModel.mediaPlayer = MediaPlayer.create(context, R.raw.testsound)
+                viewModel.mediaPlayer = MediaPlayer.create(context, resources.getIdentifier(audio, "raw", activity?.packageName))
             }
             playPauseButton = getView()?.findViewById(R.id.PlayPauseSound)
             seekBar = getView()?.findViewById(R.id.seekBar)
@@ -198,7 +200,7 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
                 }
             }
 
-            var rawTimeLength = viewModel.mediaPlayer?.duration!!
+            val rawTimeLength = viewModel.mediaPlayer?.duration!!
 
             timeLengthSek = (rawTimeLength % 60000)/1000
             timeLengthMin = rawTimeLength/60000
@@ -211,7 +213,6 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
 
                     timeSek = (progress % 60000) / 1000
                     timeMin = progress / 60000
-
 
                     mediaTime?.text = (timeMin.toString() + ":" + timeSek.toString() + " / " +
                             timeLengthMin.toString() + ":" + timeLengthSek.toString())
