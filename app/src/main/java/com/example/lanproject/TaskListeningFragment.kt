@@ -4,22 +4,26 @@ import android.content.res.Configuration
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
-import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.text.HtmlCompat
-import kotlinx.android.synthetic.main.fragment_task1.*
-import org.json.JSONObject
-import kotlinx.android.synthetic.main.fragment_task_listening.*
-import kotlinx.android.synthetic.main.edit_text.*
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.edit_text.view.*
+import kotlinx.android.synthetic.main.fragment_task_listening.*
+import org.json.JSONObject
 
 class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFragment {
-    var mediaPlayer: MediaPlayer? = null
+    //var mediaPlayer: MediaPlayer? = null
+    private lateinit var viewModel: TaskListeningViewModel
+    private val mediaPlayer2 = MediaPlayer().apply {
+        setOnPreparedListener { start() }
+        setOnCompletionListener { reset() }
+    }
     var playPauseButton: ImageButton? = null;
     var seekBar: SeekBar? = null;
     var mediaTime: TextView? = null;
@@ -27,11 +31,9 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
     var timeMin: Int = 0;
     var timeLengthSek: Int = 0;
     var timeLengthMin: Int = 0;
-
     private var difficulty : Int? = null
     private lateinit var inflater : LayoutInflater
     private var editTextMenus = mutableListOf<EditText>()
-
     override fun init(difficulty: Int) {
         this.difficulty = difficulty
     }
@@ -56,14 +58,34 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
         }
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        val editTextContents = arrayListOf<String>()
+        editTextMenus.forEach{
+            editTextContents.add(it.getText().toString())
+        }
+
+        outState.putStringArrayList("editTextContents", editTextContents)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        // Restore saved strings
+        savedInstanceState?.getStringArrayList("editTextContents")?.forEachIndexed { index, it ->
+            editTextMenus[index].setText(it)
+        }
+
+        if ((activity as TaskContainer).finishedTest) {
+            (activity as TaskContainer).finishTest()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
 
-        setRetainInstance(true)
+        viewModel = ViewModelProvider(this).get(TaskListeningViewModel::class.java)
+        //setRetainInstance(true)
 
         try {
             val testData = TaskData(JSONObject("""
@@ -110,12 +132,12 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
             // Should probably use a xml layout styling for the text views (as well as input and selection views) in all tasks. This will do for now though.
             val dpRatio = view.context.resources.displayMetrics.density
             val textLayoutParams = ViewGroup.MarginLayoutParams(
-                ViewGroup.MarginLayoutParams.MATCH_PARENT,
-                ViewGroup.MarginLayoutParams.WRAP_CONTENT
+                    ViewGroup.MarginLayoutParams.MATCH_PARENT,
+                    ViewGroup.MarginLayoutParams.WRAP_CONTENT
             )
             textLayoutParams.setMargins(
-                (16 * dpRatio).toInt(), 0,
-                (16 * dpRatio).toInt(), 0
+                    (16 * dpRatio).toInt(), 0,
+                    (16 * dpRatio).toInt(), 0
             )
 
             listeningInstructionsText.text = testData.instructions
@@ -150,21 +172,23 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
             }
 
             // TODO: Use the JSON data to see which audio file we should use for this test
-            if (mediaPlayer == null)
+            if (viewModel.mediaPlayer == null)
             {
-                mediaPlayer = MediaPlayer.create(context, R.raw.testsound)
+                //val audio:String =
+                viewModel.mediaPlayer = MediaPlayer.create(context, R.raw.testsound)
+                //mediaPlayer = MediaPlayer.create(context, testData.)
             }
             playPauseButton = getView()?.findViewById(R.id.PlayPauseSound)
             seekBar = getView()?.findViewById(R.id.seekBar)
             mediaTime = getView()?.findViewById(R.id.mediaTime)
 
-            if(mediaPlayer?.isPlaying == true)
+            if(viewModel.mediaPlayer?.isPlaying == true)
             {
                 playPauseButton?.setImageResource(R.drawable.ic_baseline_pause_24)
             }
 
             playPauseButton?.setOnClickListener {
-                if(mediaPlayer?.isPlaying == true) {
+                if(viewModel.mediaPlayer?.isPlaying == true) {
                     PauseSound()
                     playPauseButton?.setImageResource(R.drawable.ic_baseline_play_arrow_24)
                 }
@@ -174,19 +198,19 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
                 }
             }
 
-            var rawTimeLength = mediaPlayer?.duration!!
+            var rawTimeLength = viewModel.mediaPlayer?.duration!!
 
             timeLengthSek = (rawTimeLength % 60000)/1000
             timeLengthMin = rawTimeLength/60000
 
             mediaTime?.text = ("00:00 / " + timeLengthMin.toString() + ":" + timeLengthSek.toString())
 
-            seekBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            seekBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                    if(fromUser) mediaPlayer?.seekTo(progress)
+                    if (fromUser) viewModel.mediaPlayer?.seekTo(progress)
 
-                    timeSek = (progress % 60000)/1000
-                    timeMin = progress/60000
+                    timeSek = (progress % 60000) / 1000
+                    timeMin = progress / 60000
 
 
                     mediaTime?.text = (timeMin.toString() + ":" + timeSek.toString() + " / " +
@@ -210,29 +234,31 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
         finishTestButton.setOnClickListener {
             it.visibility = View.INVISIBLE
             (activity as TaskContainer).finishTest()
-            mediaPlayer?.release()
+            viewModel.mediaPlayer?.release()
             playPauseButton?.visibility = View.INVISIBLE
+            seekBar?.visibility = View.INVISIBLE
         }
     }
 
     fun PlaySound() {
-        mediaPlayer?.start()
+        viewModel.PlaySound()
+        //mediaPlayer?.start()
     }
 
     fun PauseSound() {
-        mediaPlayer?.pause()
+        viewModel.PauseSound()
+        //mediaPlayer?.pause()
     }
 
     private fun initSeekbar() {
-        seekBar?.max = mediaPlayer!!.duration
+        seekBar?.max = viewModel.mediaPlayer!!.duration
         val handler = Handler()
-        handler.postDelayed(object: Runnable {
-            override fun run(){
+        handler.postDelayed(object : Runnable {
+            override fun run() {
                 try {
-                    seekBar?.progress = mediaPlayer!!.currentPosition
+                    seekBar?.progress = viewModel.mediaPlayer!!.currentPosition
                     handler.postDelayed(this, 1000)
-                }
-                catch (e: Exception){
+                } catch (e: Exception) {
                     seekBar?.progress = 0
                 }
             }
