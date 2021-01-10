@@ -24,6 +24,7 @@
     <string name="difficulty">Difficulty:</string>
     <string name="date">Date:</string>
     <string name="insert">Insert</string>
+    <string name="ReqFieldError">Required Field</string>
 
     <string-array name="ActivityList">
         <item>Reading Task</item>
