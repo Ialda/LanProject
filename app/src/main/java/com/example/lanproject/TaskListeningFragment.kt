@@ -235,7 +235,7 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
         finishTestButton.setOnClickListener {
             it.visibility = View.INVISIBLE
             (activity as TaskContainer).finishTest()
-            viewModel.mediaPlayer?.release()
+            viewModel.ClearMediaplayer()
             playPauseButton?.visibility = View.INVISIBLE
             seekBar?.visibility = View.INVISIBLE
         }

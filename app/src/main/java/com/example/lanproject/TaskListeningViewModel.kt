@@ -22,8 +22,12 @@ class TaskListeningViewModel : ViewModel(){
         mediaPlayer?.pause()
     }
 
+    fun ClearMediaplayer() {
+        mediaPlayer?.release()
+    }
+
     override fun onCleared() {
         super.onCleared()
-        mediaPlayer?.release()
+        ClearMediaplayer()
     }
 }
