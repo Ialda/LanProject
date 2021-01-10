@@ -5,22 +5,38 @@ import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setMargins
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONObject
 import java.net.URL
 import java.util.*
+import kotlin.text.Charsets.UTF_8
 
 class HistoryPageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history_page)
+
+        var i = true
+        var x = 0
+        while (i) {
+            i = CreateNewHistory(x)
+            x += 5
+        }
     }
 
-    fun CreateNewHistory(view: View) {
+    fun CreateNewHistory(x : Int) : Boolean {
+        val X = x
+        //Tillfällig stoppunkt. Behöver fungera dynamiskt mot hur många entries som finns.
+        if (X == 15) {
+            return false
+        }
+
         val HistoryView = findViewById<LinearLayout>(R.id.LinearLayoutRes)
         val HorView = LinearLayout(this)
         val LinearView = LinearLayout(this)
@@ -52,25 +68,26 @@ class HistoryPageActivity : AppCompatActivity() {
         TextViewPoint.text = getString(R.string.points)
         TextViewDiff.text = getString(R.string.difficulty)
         TextViewDate.text = getString(R.string.date)
-        /*var DiffRes = "placeholder"
-        when (ResultList[0].difficulty) {
-            0 -> "Easy"
-            1 -> "Medium"
-            2 -> "Hard"
-        }*/
-        val Point = "3"
-        val MaxPoint = "10"
 
+        //Hämtar för tillfället alla entires, ska endast hämta för inloggad användare!
         val queue = Volley.newRequestQueue(this)
         val url = "https://lwm.sh/~lanproject/GetUserHistory.php"
-        val stringRequest = StringRequest(Request.Method.GET, url,
-                { response -> TextViewActRes.text = "Response is: ${response.substring(0, 500)}" },
-                { TextViewActRes.text = "That didn't work!" })
-        queue.add(stringRequest)
 
-        TextViewPointRes.text = "$Point/$MaxPoint"
-        TextViewDiffRes.text = "Medium"
-        TextViewDateRes.text = Date().toString()
+        val stringRequest = StringRequest(Request.Method.GET, url, { response ->
+            val strRes = response.toString()
+            val testvalues = strRes.split(";")
+            TextViewActRes.text = testvalues[X]
+            TextViewPointRes.text = testvalues[X + 1] + "/" + testvalues[X + 2]
+            TextViewDiffRes.text = testvalues[X + 3]
+            TextViewDateRes.text = testvalues[X + 4] }, { error ->
+            if(error.networkResponse == null) {
+                TextViewActRes.text = "No response"
+            } else {
+                TextViewActRes.text = "Error!"
+            }
+        })
+
+        queue.add(stringRequest)
 
         TextViewAct.textSize = 24f
         TextViewPoint.textSize = 24f
@@ -94,5 +111,7 @@ class HistoryPageActivity : AppCompatActivity() {
         HorView.addView(LinearViewRes, LinearParams)
 
         HistoryView.addView(HorView)
+
+        return true
     }
 }
