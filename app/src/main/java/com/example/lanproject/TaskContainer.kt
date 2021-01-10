@@ -26,6 +26,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.task_container_bottomsheet.*
 import kotlinx.coroutines.withTimeout
 import org.json.JSONObject
+import android.util.Base64
 
 class TaskContainer : AppCompatActivity() {
     private inner class PageAdapter(activity: TaskContainer, private val pages: List<Fragment>) : FragmentStateAdapter(activity) {
@@ -250,8 +251,10 @@ class TaskContainer : AppCompatActivity() {
                     }
                 ) {
                     override fun getHeaders(): MutableMap<String, String> {
+                        val user = "testUser"
+                        val pass = "hejsan"
                         val headers = HashMap<String, String>()
-                        headers["Authorization"] = "Basic dGVzdFVzZXIyOmhlanNhbg=="
+                        headers["Authorization"] = "Basic ${Base64.encodeToString("$user:$pass".toByteArray(),Base64.DEFAULT)}"
                         return headers
                     }
                 }
