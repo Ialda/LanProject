@@ -15,29 +15,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/PlainTextRegisterUsername"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/UsernameField"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="65dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="40dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
-                android:background="@android:drawable/editbox_background"
-                android:ems="10"
-                android:gravity="center|left"
                 android:hint="@string/username"
-                android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.035">
 
-            <EditText
-                android:id="@+id/PasswordRegisterpswd"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/PlainTextRegisterUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPersonName"
+                    android:singleLine="true"
+                    android:textSize="18sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/PasswordField"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="65dp"
                 android:layout_marginStart="24dp"
@@ -45,17 +52,25 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
-                android:background="@android:drawable/editbox_background"
-                android:ems="10"
-                android:gravity="center|left"
                 android:hint="@string/password"
-                android:inputType="textPassword"
+                app:endIconMode="password_toggle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/PlainTextRegisterUsername" />
+                app:layout_constraintTop_toBottomOf="@+id/UsernameField">
 
-            <EditText
-                android:id="@+id/PasswordReRegisterpswd"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/PasswordRegisterpswd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textSize="18sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ConfirmPasswordField"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="65dp"
                 android:layout_marginStart="24dp"
@@ -63,14 +78,21 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
-                android:background="@android:drawable/editbox_background"
-                android:ems="10"
-                android:gravity="center|left"
                 android:hint="@string/confirmPassword"
-                android:inputType="textPassword"
+                app:endIconMode="password_toggle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/PasswordRegisterpswd" />
+                app:layout_constraintTop_toBottomOf="@+id/PasswordField">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/PasswordReRegisterpswd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textSize="18sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/RegisterButton"
@@ -82,6 +104,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
                 android:layout_marginBottom="40dp"
+                android:onClick="registerPageView"
                 android:text="@string/register"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +124,7 @@
                 android:layout_marginRight="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/PasswordReRegisterpswd">
+                app:layout_constraintTop_toBottomOf="@+id/ConfirmPasswordField">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

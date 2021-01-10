@@ -14,44 +14,58 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/PlainTextUsername"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/UsernameField"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="65dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="30dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
-                android:autofillHints=""
-                android:background="@android:drawable/editbox_background"
-                android:ems="10"
-                android:gravity="center|left"
                 android:hint="@string/username"
-                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.041">
 
-            <EditText
-                android:id="@+id/PasswordUserpswd"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/PlainTextUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPersonName"
+                    android:singleLine="true"
+                    android:textSize="18sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/PasswordField"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="65dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
-                android:autofillHints=""
-                android:background="@android:drawable/editbox_background"
-                android:ems="10"
-                android:gravity="center|left"
                 android:hint="@string/password"
-                android:inputType="textPassword"
+                app:endIconMode="password_toggle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/PlainTextUsername" />
+                app:layout_constraintTop_toBottomOf="@+id/UsernameField">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/PasswordUserpswd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textSize="18sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/ButtonLogin"
@@ -59,14 +73,14 @@
                 android:layout_height="70dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="80dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
                 android:onClick="MainPageView"
                 android:text="@string/login"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/PasswordUserpswd" />
+                app:layout_constraintTop_toBottomOf="@+id/PasswordField" />
 
             <Button
                 android:id="@+id/ButtonRegister"
@@ -74,14 +88,12 @@
                 android:layout_height="70dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
-                android:layout_marginBottom="30dp"
                 android:gravity="center"
                 android:onClick="RegisterPageview"
                 android:text="@string/register"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ButtonLogin" />
