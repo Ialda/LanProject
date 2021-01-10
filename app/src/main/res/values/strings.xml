@@ -25,6 +25,9 @@
     <string name="date">Date:</string>
     <string name="insert">Insert</string>
     <string name="ReqFieldError">Required Field</string>
+    <string name="PasswordMatchError">Passwords do not match</string>
+    <string name="IncorrectCredentials">Wrong Username or Password</string>
+    <string name="Answer">Answer</string>
     <string name="historic_test_entries">Historic Test Entries:</string>
     <string name="_0">0</string>
 
