@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name="com.example.lanproject.LanProjectApplication"
         android:theme="@style/Theme.LanProject">
         <activity android:name=".RegisterPageActivity">
             android:parentActivityName=".MainActivity">
