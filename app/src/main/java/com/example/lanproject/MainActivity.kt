@@ -5,10 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Base64
 import android.view.View
 import android.widget.EditText
+import androidx.core.text.parseAsHtml
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.PasswordField
+import kotlinx.android.synthetic.main.activity_main.UsernameField
+import kotlinx.android.synthetic.main.activity_register_page.*
 import java.net.PasswordAuthentication
 
 class MainActivity : AppCompatActivity() {
@@ -62,13 +69,45 @@ class MainActivity : AppCompatActivity() {
                 PasswordField.error = getString(R.string.ReqFieldError)
             }
         }
-
         else
-            startActivity(Intent(this, MainPageActivity::class.java))
+            CheckUser()
+            //startActivity(Intent(this, MainPageActivity::class.java))
     }
 
     fun RegisterPageview(view: View) {
 
         startActivity(Intent(this, RegisterPageActivity::class.java))
     }
+
+    fun CheckUser(){
+        val queue = Volley.newRequestQueue(this)
+        val serverURL = "https://lwm.sh/~lanproject/auth.php"
+        val Username = findViewById<EditText>(R.id.PlainTextUsername)
+        val Password = findViewById<EditText>(R.id.PasswordUserpswd)
+
+        val stringRequest = object: StringRequest(
+            Method.GET, serverURL,
+            { response ->
+                startActivity(Intent(this, MainPageActivity::class.java))
+            },
+            { error ->
+                UsernameField.error = getString(R.string.IncorrectCredentials)
+                PasswordField.error = getString(R.string.IncorrectCredentials)
+            }
+        )
+        {
+            override fun getHeaders(): MutableMap<String, String> {
+                val user = Username?.text
+                val pass = Password?.text
+                val headers = HashMap<String, String>()
+                headers["Authorization"] = "Basic ${
+                    Base64.encodeToString("$user:$pass".toByteArray(),
+                        Base64.DEFAULT)}"
+                return headers
+            }
+        }
+
+        queue.add(stringRequest)
+    }
+
 }
