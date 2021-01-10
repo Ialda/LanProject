@@ -30,6 +30,8 @@
     <string name="Answer">Answer</string>
     <string name="historic_test_entries">Historic Test Entries:</string>
     <string name="_0">0</string>
+    <string name="UsernameTaken">This Username is already taken</string>
+    <string name="ConnectFail">Connection to database failed</string>
 
     <string-array name="ActivityList">
         <item>Reading Task</item>

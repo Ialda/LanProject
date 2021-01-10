@@ -88,6 +88,9 @@ class MainActivity : AppCompatActivity() {
         val stringRequest = object: StringRequest(
             Method.GET, serverURL,
             { response ->
+                LanProjectApplication.Username = Username?.text.toString()
+                LanProjectApplication.Password = Password?.text.toString()
+
                 startActivity(Intent(this, MainPageActivity::class.java))
             },
             { error ->
