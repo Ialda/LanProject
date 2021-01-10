@@ -25,6 +25,8 @@
     <string name="date">Date:</string>
     <string name="insert">Insert</string>
     <string name="ReqFieldError">Required Field</string>
+    <string name="historic_test_entries">Historic Test Entries:</string>
+    <string name="_0">0</string>
 
     <string-array name="ActivityList">
         <item>Reading Task</item>

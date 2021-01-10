@@ -6,16 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".HistoryPageActivity">
 
+    <TextView
+        android:id="@+id/HistoryEntryLoadAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/_0"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/HistoryEntryLoadText"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="@string/historic_test_entries"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/HistoryEntryLoadAmount"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ScrollView
         android:id="@+id/ScrollViewRes"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/HistoryEntryLoadAmount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/LinearLayoutRes"
@@ -26,242 +44,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="200dp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/TextViewAct1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/activity"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewPoint1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/points"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewDiff1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/difficulty"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewDate1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date"
-                        android:textSize="24sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/TextViewActRes1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Reading"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewPointRes1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="10/10"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewDiffRes1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Medium"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewDateRes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="14/12-20"
-                        android:textSize="24sp" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/TextViewAct4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/activity"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewPoint4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/points"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewDiff4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/difficulty"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewDate4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date"
-                        android:textSize="24sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/TextViewActRes4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Writing"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewPointRes4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="5/10"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewDiffRes4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Medium"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewDateRes4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="14/12-20"
-                        android:textSize="24sp" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/TextViewAct2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/activity"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewPont2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/points"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewDiff2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/difficulty"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewDate2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date"
-                        android:textSize="24sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/TextViewActRes2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Writing"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewPointRes2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="7/10"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewDiffRes2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Hard"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/TextViewDateRes2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="13/12-20"
-                        android:textSize="24sp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
+            android:orientation="vertical" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
