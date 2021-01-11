@@ -251,8 +251,8 @@ class TaskContainer : AppCompatActivity() {
                     }
                 ) {
                     override fun getHeaders(): MutableMap<String, String> {
-                        val user = "testUser"
-                        val pass = "hejsan"
+                        val user = LanProjectApplication.Username
+                        val pass = LanProjectApplication.Password
                         val headers = HashMap<String, String>()
                         headers["Authorization"] = "Basic ${Base64.encodeToString("$user:$pass".toByteArray(),Base64.DEFAULT)}"
                         return headers
