@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.task_container_bottomsheet.*
 import kotlinx.coroutines.withTimeout
 import org.json.JSONObject
 import android.util.Base64
+import kotlinx.android.synthetic.main.task_container_bottomsheet.view.*
 
 class TaskContainer : AppCompatActivity() {
     private inner class PageAdapter(activity: TaskContainer, private val pages: List<Fragment>) : FragmentStateAdapter(activity) {
@@ -217,6 +218,14 @@ class TaskContainer : AppCompatActivity() {
         }.attach()
 
         btmSheetExpand.setOnClickListener {
+            if (BottomSheetBehavior.from(bottomSheet).state == BottomSheetBehavior.STATE_COLLAPSED)
+                BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
+            else {
+                BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_COLLAPSED
+                btmSheetExpand.setImageResource(R.drawable.ic_baseline_expand_less_24)
+            }
+        }
+        bottomSheet.header.setOnClickListener {
             if (BottomSheetBehavior.from(bottomSheet).state == BottomSheetBehavior.STATE_COLLAPSED)
                 BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
             else {
