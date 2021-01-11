@@ -20,12 +20,15 @@ class HistoryPageActivity : AppCompatActivity() {
         val stringRequest = StringRequest(Request.Method.GET, url, { response ->
             val strRes = response.toString()
             val testvalues = strRes.split(";")
-            findViewById<TextView>(R.id.HistoryEntryLoadAmount).text = testvalues[0]
-            var i = true
-            var x = 1
-            while (i) {
-                i = CreateNewHistory(x, testvalues)
-                x += 5
+            if(testvalues[0] != "0")
+            {
+                findViewById<TextView>(R.id.HistoryEntryLoadAmount).text = testvalues[0]
+                var i = true
+                var x = 1
+                while (i) {
+                    i = CreateNewHistory(x, testvalues)
+                    x += 5
+                }
             }
         }, { error ->
             if (error.networkResponse == null) {
