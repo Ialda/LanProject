@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -64,7 +65,6 @@ class RegisterPageActivity : AppCompatActivity() {
                 ConfirmPasswordField.setError(null)
             }
         })
-
     }
 
     fun registerPageView(view: View) {
@@ -114,10 +114,15 @@ class RegisterPageActivity : AppCompatActivity() {
             //else if (error.toString() == "com.android.volley.)
             if (error.toString() == "com.android.volley.ClientError")
                 UsernameField.error = getString(R.string.UsernameTaken)
-            else {
+            else if (error.networkResponse == null) {
                 UsernameField.error = getString(R.string.ConnectFail)
                 PasswordField.error = getString(R.string.ConnectFail)
                 ConfirmPasswordField.error = getString(R.string.ConnectFail)
+            }
+            else{
+                UsernameField.error = getString(R.string.Error)
+                PasswordField.error = getString(R.string.Error)
+                ConfirmPasswordField.error = getString(R.string.Error)
             }
         })
 
