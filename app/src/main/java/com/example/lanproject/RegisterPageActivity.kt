@@ -65,25 +65,6 @@ class RegisterPageActivity : AppCompatActivity() {
                 ConfirmPasswordField.setError(null)
             }
         })
-
-        val queue = Volley.newRequestQueue(this)
-        val url = "https://lwm.sh/~lanproject/GetUserHistory.php?roles"
-
-        val stringRequest = StringRequest(Request.Method.GET, url, { response ->
-            val strRes = response.toString()
-            //val testvalues = strRes.split(";")
-            ConfirmPasswordField.error = strRes
-
-        }, { error ->
-            if (error.networkResponse == null) {
-                ConfirmPasswordField.error = "No response"
-            } else {
-                ConfirmPasswordField.error = "Error!"
-            }
-        })
-
-        queue.add(stringRequest)
-
     }
 
     fun registerPageView(view: View) {
