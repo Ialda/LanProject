@@ -6,9 +6,14 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Base64
+import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.text.parseAsHtml
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.textfield.TextInputLayout
@@ -16,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.PasswordField
 import kotlinx.android.synthetic.main.activity_main.UsernameField
 import kotlinx.android.synthetic.main.activity_register_page.*
+import org.json.JSONObject
 import java.net.PasswordAuthentication
 
 class MainActivity : AppCompatActivity() {
@@ -85,32 +91,70 @@ class MainActivity : AppCompatActivity() {
         val Username = findViewById<EditText>(R.id.PlainTextUsername)
         val Password = findViewById<EditText>(R.id.PasswordUserpswd)
 
-        val stringRequest = object: StringRequest(
-            Method.GET, serverURL,
-            { response ->
-                LanProjectApplication.Username = Username?.text.toString()
-                LanProjectApplication.Password = Password?.text.toString()
+        /*val stringRequest = object: StringRequest(
+                Method.GET, serverURL,
+                { response ->
+                    //response.toString()
+                    /*response?.toString(4)?.let
+                    if (response.getString("status") == "success") {
+                        finish()
+                    } else {
+                        Toast.makeText(this, "Unable to post result to database, please try again later", Toast.LENGTH_LONG).show()
+                    }*/
+                    LanProjectApplication.Username = Username?.text.toString()
+                    LanProjectApplication.Password = Password?.text.toString()
 
-                startActivity(Intent(this, MainPageActivity::class.java))
-            },
-            { error ->
-                UsernameField.error = getString(R.string.IncorrectCredentials)
-                PasswordField.error = getString(R.string.IncorrectCredentials)
+                    startActivity(Intent(this, MainPageActivity::class.java))
+                },
+                { error -> etc.
+                }
+                )*/
+
+        queue.add(
+            object : JsonObjectRequest(Request.Method.GET, serverURL, null,
+                Response.Listener<JSONObject> { response ->
+                    response?.toString(4)?.let { Log.i("LanProject", it) }
+                    if (response.getString("status") == "success") {
+                        LanProjectApplication.Username = Username?.text.toString()
+                        LanProjectApplication.Password = Password?.text.toString()
+
+                        startActivity(Intent(this, MainPageActivity::class.java))
+                    } else {
+                        Toast.makeText(this, "Unable to login, please try again later", Toast.LENGTH_LONG).show()
+                    }
+                },
+                { error ->
+                    if (error.toString() == "com.android.volley.AuthFailureError") {
+                        UsernameField.error = error.toString()
+                        //UsernameField.error = getString(R.string.IncorrectCredentials)
+                        PasswordField.error = getString(R.string.IncorrectCredentials)
+                    }
+                    else if (error.networkResponse == null){
+                        UsernameField.error = getString(R.string.ConnectFail)
+                        PasswordField.error = getString(R.string.ConnectFail)
+                        ConfirmPasswordField.error = getString(R.string.ConnectFail)
+                    }
+                    else{
+                        UsernameField.error = getString(R.string.Error)
+                        PasswordField.error = getString(R.string.Error)
+                        ConfirmPasswordField.error = getString(R.string.Error)
+                    }
+                }
+            )
+            {
+                override fun getHeaders(): MutableMap<String, String> {
+                    val user = Username?.text
+                    val pass = Password?.text
+                    val headers = HashMap<String, String>()
+                    headers["Authorization"] = "Basic ${
+                        Base64.encodeToString("$user:$pass".toByteArray(),
+                            Base64.DEFAULT)}"
+                    return headers
+                }
             }
         )
-        {
-            override fun getHeaders(): MutableMap<String, String> {
-                val user = Username?.text
-                val pass = Password?.text
-                val headers = HashMap<String, String>()
-                headers["Authorization"] = "Basic ${
-                    Base64.encodeToString("$user:$pass".toByteArray(),
-                        Base64.DEFAULT)}"
-                return headers
-            }
-        }
 
-        queue.add(stringRequest)
+        //queue.add(stringRequest)
     }
 
 }

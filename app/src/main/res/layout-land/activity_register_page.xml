@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".RegisterPageActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,16 +28,15 @@
                 android:layout_marginRight="24dp"
                 android:hint="@string/username"
                 app:errorEnabled="true"
-                app:helperTextEnabled="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.161">
+                app:layout_constraintVertical_bias="0.034">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/PlainTextUsername"
+                    android:id="@+id/PlainTextRegisterUsername"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:inputType="textPersonName"
@@ -58,13 +58,38 @@
                 android:hint="@string/password"
                 app:endIconMode="password_toggle"
                 app:errorEnabled="true"
-                app:helperTextEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/UsernameField">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/PasswordUserpswd"
+                    android:id="@+id/PasswordRegisterpswd"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textSize="18sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ConfirmPasswordField"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="85dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:hint="@string/confirmPassword"
+                app:endIconMode="password_toggle"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/PasswordField">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/PasswordReRegisterpswd"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:inputType="textPassword"
@@ -74,22 +99,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/ButtonLogin"
-                android:layout_width="0dp"
-                android:layout_height="70dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="80dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
-                android:onClick="MainPageView"
-                android:text="@string/login"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/PasswordField" />
-
-            <Button
-                android:id="@+id/ButtonRegister"
+                android:id="@+id/RegisterButton"
                 android:layout_width="0dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="24dp"
@@ -97,12 +107,47 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
-                android:gravity="center"
-                android:onClick="RegisterPageview"
+                android:layout_marginBottom="40dp"
+                android:onClick="registerPageView"
                 android:text="@string/register"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView3"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ButtonLogin" />
+                app:layout_constraintTop_toBottomOf="@+id/ConfirmPasswordField">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Spinner
+                        android:id="@+id/RoleSpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:entries="@array/Roles"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
