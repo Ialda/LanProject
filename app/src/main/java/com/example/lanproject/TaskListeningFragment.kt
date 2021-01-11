@@ -13,6 +13,7 @@ import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.edit_text.view.*
 import kotlinx.android.synthetic.main.fragment_task_listening.*
 import org.json.JSONObject
@@ -34,7 +35,7 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
     var timeLengthMin: Int = 0
     private var difficulty : Int? = null
     private lateinit var inflater : LayoutInflater
-    private var editTextMenus = mutableListOf<EditText>()
+    private var editTextMenus = mutableListOf<TextInputLayout>()
     override fun init(difficulty: Int) {
         this.difficulty = difficulty
     }
@@ -65,7 +66,7 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
 
         val editTextContents = arrayListOf<String>()
         editTextMenus.forEach{
-            editTextContents.add(it.getText().toString())
+            editTextContents.add(it.editText?.getText().toString())
         }
 
         outState.putStringArrayList("editTextContents", editTextContents)
@@ -75,10 +76,11 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
         super.onViewStateRestored(savedInstanceState)
         // Restore saved strings
         savedInstanceState?.getStringArrayList("editTextContents")?.forEachIndexed { index, it ->
-            editTextMenus[index].setText(it)
+            editTextMenus[index].editText?.setText(it)
         }
 
         if ((activity as TaskContainer).finishedTest) {
+            finishTestButton.visibility = View.INVISIBLE
             (activity as TaskContainer).finishTest()
         }
     }
@@ -152,16 +154,18 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
 
                 (activity as TaskContainer).addQuestionCallback {
                     var scoreValue = 0
-                    val editText = child.editText
+                    val editText = child.EditTextField
                     editText.isEnabled = false
                     editText.isClickable = false
-                    scoreValue = if (editText.text.toString().equals(item.gap.toString(), ignoreCase = true)) 1 else 0
+                    scoreValue = if (editText.editText?.text.toString().equals(item.gap.toString(), ignoreCase = true)) 1 else 0
 
                     if (scoreValue == 1) {
-                        child.findViewById<ImageView>(R.id.successIcon).visibility = View.VISIBLE
+                        //child.findViewById<ImageView>(R.id.successIcon).visibility = View.VISIBLE
+                        child.findViewById<TextInputLayout>(R.id.EditTextField).setEndIconDrawable(R.drawable.ic_baseline_check_24)
                     }
                     else {
-                        child.findViewById<ImageView>(R.id.failIcon).visibility = View.VISIBLE
+                        //child.findViewById<ImageView>(R.id.failIcon).visibility = View.VISIBLE
+                        child.findViewById<TextInputLayout>(R.id.EditTextField).setEndIconDrawable(R.drawable.ic_baseline_close_24)
                     }
                     scoreValue
                 }
@@ -169,13 +173,14 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
                 linearLayout2.addView(text)
                 linearLayout2.addView(child)
 
-                editTextMenus.add(child.editText)
+                editTextMenus.add(child.EditTextField)
             }
 
             if (viewModel.mediaPlayer == null)
             {
 
-                val audio:String = File(testData.audio).nameWithoutExtension
+               // val audio:String = File(testData.audio).nameWithoutExtension
+                val audio:String = testData.audio.replace(".mp3", "")
                 //resources.getIdentifier(audio, "raw", activity?.packageName)
                 //viewModel.mediaPlayer = MediaPlayer.create(context, R.raw.testsound)
                 viewModel.mediaPlayer = MediaPlayer.create(context, resources.getIdentifier(audio, "raw", activity?.packageName))
