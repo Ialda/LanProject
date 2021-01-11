@@ -5,6 +5,7 @@ import android.util.DisplayMetrics
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.view.setMargins
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
@@ -56,6 +57,7 @@ class HistoryPageActivity : AppCompatActivity() {
         }
 
         val HistoryView = findViewById<LinearLayout>(R.id.LinearLayoutRes)
+        val CardView = CardView(this)
         val HorView = LinearLayout(this)
         val LinearView = LinearLayout(this)
         val LinearViewRes = LinearLayout(this)
@@ -104,8 +106,9 @@ class HistoryPageActivity : AppCompatActivity() {
 
         HorView.addView(LinearView, LinearParams)
         HorView.addView(LinearViewRes, LinearParams)
+        CardView.addView((HorView))
 
-        HistoryView.addView(HorView)
+        HistoryView.addView(CardView, LinearParams)
 
         if ((testvalues[0].toString().toInt() * 5) + 1 == X + 5)
             return false
