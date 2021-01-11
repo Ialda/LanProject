@@ -29,7 +29,7 @@
         android:layout_marginEnd="@dimen/activity_margin"
         android:layout_marginRight="@dimen/activity_margin"
         android:gravity="center"
-        android:text="Choose difficulty smol"
+        android:text="Choose difficulty"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
