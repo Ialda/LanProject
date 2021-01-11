@@ -32,6 +32,7 @@
     <string name="ConnectFail">Connection to database failed</string>
     <string name="Error">Unhandled error occurred</string>
     <string name="PasswordToShort">The password is to short</string>
+    <string name="LanguideLoginGreeting">Sign in to access LanGuide</string>
 
     <string-array name="ActivityList">
         <item>Reading Task</item>

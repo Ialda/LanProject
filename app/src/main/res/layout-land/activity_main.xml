@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="Sign in to access LanGuide"
+            android:text="@string/LanguideLoginGreeting"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/PasswordField"
+                android:id="@+id/UsernameField"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="85dp"
@@ -52,17 +52,17 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/PasswordUserpswd"
+                    android:id="@+id/PlainTextUsername"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    android:inputType="textPassword"
+                    android:inputType="textPersonName"
                     android:singleLine="true"
                     android:textSize="18sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/UsernameField"
+                android:id="@+id/PasswordField"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="85dp"
@@ -78,7 +78,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/PlainTextUsername"
+                    android:id="@+id/PasswordUserpswd"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:inputType="textPersonName"
