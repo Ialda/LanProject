@@ -95,24 +95,22 @@ class MainActivity : AppCompatActivity() {
 
                         startActivity(Intent(this, MainPageActivity::class.java))
                     } else {
-                        Toast.makeText(this, "Unable to login, please try again later", Toast.LENGTH_LONG).show()
+                        UsernameField.error = getString(R.string.Error)
+                        PasswordField.error = getString(R.string.Error)
                     }
                 },
                 { error ->
                     if (error.toString() == "com.android.volley.AuthFailureError") {
-                        //UsernameField.error = error.toString()
                         UsernameField.error = getString(R.string.IncorrectCredentials)
                         PasswordField.error = getString(R.string.IncorrectCredentials)
                     }
                     else if (error.networkResponse == null){
                         UsernameField.error = getString(R.string.ConnectFail)
                         PasswordField.error = getString(R.string.ConnectFail)
-                        ConfirmPasswordField.error = getString(R.string.ConnectFail)
                     }
                     else{
                         UsernameField.error = getString(R.string.Error)
                         PasswordField.error = getString(R.string.Error)
-                        ConfirmPasswordField.error = getString(R.string.Error)
                     }
                 }
             )
