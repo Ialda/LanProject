@@ -1,7 +1,6 @@
 package com.example.lanproject
 
 import android.os.Bundle
-import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +15,7 @@ class HistoryPageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_history_page)
 
         val queue = Volley.newRequestQueue(this)
-        val url = "https://lwm.sh/~lanproject/GetUserHistory.php?user=" + "'testUser'"
+        val url = "https://lwm.sh/~lanproject/GetUserHistory.php?user='" + LanProjectApplication.Username + "'"
 
         val stringRequest = StringRequest(Request.Method.GET, url, { response ->
             val strRes = response.toString()
@@ -40,6 +39,10 @@ class HistoryPageActivity : AppCompatActivity() {
     }
 
     fun CreateNewHistory(X : Int, testvalues : List<String>) : Boolean {
+        if (testvalues[0].toString().toInt() == 0) {
+            return false
+        }
+
         val HistoryView = findViewById<LinearLayout>(R.id.LinearLayoutRes)
         val HorView = LinearLayout(this)
         val LinearView = LinearLayout(this)
@@ -59,14 +62,6 @@ class HistoryPageActivity : AppCompatActivity() {
         LinearView.orientation = LinearLayout.VERTICAL
         LinearViewRes.orientation = LinearLayout.VERTICAL
 
-        //testing area
-        /*val ResultList = listOf(int, int, int, date)
-        ResultList[0].result = 3
-        ResultList[0].maxResult = 10
-        ResultList[0].difficulty = 1
-        ResultList[0].timeStamp = Date()*/
-        //end of area
-
         TextViewAct.text = getString(R.string.activity)
         TextViewPoint.text = getString(R.string.points)
         TextViewDiff.text = getString(R.string.difficulty)
@@ -76,7 +71,6 @@ class HistoryPageActivity : AppCompatActivity() {
         TextViewPointRes.text = testvalues[X + 1] + "/" + testvalues[X + 2]
         TextViewDiffRes.text = testvalues[X + 3]
         TextViewDateRes.text = testvalues[X + 4]
-
 
         TextViewAct.textSize = 24f
         TextViewPoint.textSize = 24f
@@ -101,7 +95,7 @@ class HistoryPageActivity : AppCompatActivity() {
 
         HistoryView.addView(HorView)
 
-        if ((findViewById<TextView>(R.id.HistoryEntryLoadAmount).text.toString().toInt() * 5) + 1 == X + 5) {
+        if ((testvalues[0].toString().toInt() * 5) + 1 == X + 5) {
             return false
         }
         return true
