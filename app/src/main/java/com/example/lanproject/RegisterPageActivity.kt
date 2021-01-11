@@ -81,6 +81,9 @@ class RegisterPageActivity : AppCompatActivity() {
                 ConfirmPasswordField.error = getString(R.string.ReqFieldError)
             }
         }
+        else if (Password?.text.toString().count() < 8) {
+            PasswordField.error = getString(R.string.PasswordToShort)
+        }
         else if (Password?.text.toString() != ConfirmPassword?.text.toString()) {
             PasswordField.error = getString(R.string.PasswordMatchError)
             ConfirmPasswordField.error = getString(R.string.PasswordMatchError)
@@ -122,7 +125,7 @@ class RegisterPageActivity : AppCompatActivity() {
             else{
                 UsernameField.error = getString(R.string.Error)
                 PasswordField.error = getString(R.string.Error)
-                ConfirmPasswordField.error = getString(R.string.Error)
+                ConfirmPasswordField.error = error.toString()
             }
         })
 
