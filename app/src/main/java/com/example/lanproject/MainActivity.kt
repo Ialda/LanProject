@@ -125,8 +125,8 @@ class MainActivity : AppCompatActivity() {
                 },
                 { error ->
                     if (error.toString() == "com.android.volley.AuthFailureError") {
-                        UsernameField.error = error.toString()
-                        //UsernameField.error = getString(R.string.IncorrectCredentials)
+                        //UsernameField.error = error.toString()
+                        UsernameField.error = getString(R.string.IncorrectCredentials)
                         PasswordField.error = getString(R.string.IncorrectCredentials)
                     }
                     else if (error.networkResponse == null){
