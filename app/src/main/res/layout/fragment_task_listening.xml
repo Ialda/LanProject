@@ -80,7 +80,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Finish Test"
+                    android:text="@string/FinishTest"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cardView7" />
@@ -110,7 +110,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginLeft="16dp"
                             android:layout_marginTop="8dp"
-                            android:text="Instructions"
+                            android:text="@string/Instructions"
                             android:textSize="18sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />

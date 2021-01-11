@@ -33,6 +33,8 @@
     <string name="Error">Unhandled error occurred</string>
     <string name="PasswordToShort">The password is to short</string>
     <string name="LanguideLoginGreeting">Sign in to access LanGuide</string>
+    <string name="FinishTest">Finish test</string>
+    <string name="Instructions">Instructions</string>
 
     <string-array name="ActivityList">
         <item>Reading Task</item>
