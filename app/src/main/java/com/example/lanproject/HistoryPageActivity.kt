@@ -22,8 +22,6 @@ class HistoryPageActivity : AppCompatActivity() {
             val strRes = response.toString()
             val testvalues = strRes.split(";")
 
-            findViewById<TextView>(R.id.HistoryEntryLoadAmount).text = testvalues[0]
-
             val displayMetrics = DisplayMetrics()
             windowManager.defaultDisplay.getMetrics(displayMetrics)
             val height = displayMetrics.heightPixels
@@ -34,8 +32,6 @@ class HistoryPageActivity : AppCompatActivity() {
                 textSize /= 2
             if (textSize < 1)
                 textSize = 1f
-
-            findViewById<TextView>(R.id.HistoryEntryLoadText).text = height.toString() + " - " + width.toString()
 
             var i = true
             var x = 1
