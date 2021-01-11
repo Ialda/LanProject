@@ -1,6 +1,7 @@
 package com.example.lanproject
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -20,11 +21,22 @@ class HistoryPageActivity : AppCompatActivity() {
         val stringRequest = StringRequest(Request.Method.GET, url, { response ->
             val strRes = response.toString()
             val testvalues = strRes.split(";")
-            findViewById<TextView>(R.id.HistoryEntryLoadAmount).text = testvalues[0]
+
+            val displayMetrics = DisplayMetrics()
+            windowManager.defaultDisplay.getMetrics(displayMetrics)
+            val height = displayMetrics.heightPixels
+            val width = displayMetrics.widthPixels
+
+            var textSize: Float = width.toFloat() / 45
+            if (height * 2 < width)
+                textSize /= 2
+            if (textSize < 1)
+                textSize = 1f
+
             var i = true
             var x = 1
             while (i) {
-                i = CreateNewHistory(x, testvalues)
+                i = CreateNewHistory(x, testvalues, textSize)
                 x += 5
             }
         }, { error ->
@@ -38,7 +50,7 @@ class HistoryPageActivity : AppCompatActivity() {
         queue.add(stringRequest)
     }
 
-    fun CreateNewHistory(X : Int, testvalues : List<String>) : Boolean {
+    fun CreateNewHistory(X: Int, testvalues: List<String>, TextSize: Float): Boolean {
         if (testvalues[0].toString().toInt() == 0) {
             return false
         }
@@ -72,14 +84,14 @@ class HistoryPageActivity : AppCompatActivity() {
         TextViewDiffRes.text = testvalues[X + 3]
         TextViewDateRes.text = testvalues[X + 4]
 
-        TextViewAct.textSize = 24f
-        TextViewPoint.textSize = 24f
-        TextViewDiff.textSize = 24f
-        TextViewDate.textSize = 24f
-        TextViewActRes.textSize = 24f
-        TextViewPointRes.textSize = 24f
-        TextViewDiffRes.textSize = 24f
-        TextViewDateRes.textSize = 24f
+        TextViewAct.textSize = TextSize
+        TextViewPoint.textSize = TextSize
+        TextViewDiff.textSize = TextSize
+        TextViewDate.textSize = TextSize
+        TextViewActRes.textSize = TextSize
+        TextViewPointRes.textSize = TextSize
+        TextViewDiffRes.textSize = TextSize
+        TextViewDateRes.textSize = TextSize
 
         LinearView.addView(TextViewAct)
         LinearView.addView(TextViewPoint)
@@ -95,9 +107,9 @@ class HistoryPageActivity : AppCompatActivity() {
 
         HistoryView.addView(HorView)
 
-        if ((testvalues[0].toString().toInt() * 5) + 1 == X + 5) {
+        if ((testvalues[0].toString().toInt() * 5) + 1 == X + 5)
             return false
-        }
+
         return true
     }
 }

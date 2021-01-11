@@ -7,29 +7,19 @@
     tools:context=".HistoryPageActivity">
 
     <TextView
-        android:id="@+id/HistoryEntryLoadAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="@string/_0"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
         android:id="@+id/HistoryEntryLoadText"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:text="@string/historic_test_entries"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/HistoryEntryLoadAmount"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
         android:id="@+id/ScrollViewRes"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/HistoryEntryLoadAmount"
+        app:layout_constraintBottom_toTopOf="@+id/HistoryEntryLoadText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
