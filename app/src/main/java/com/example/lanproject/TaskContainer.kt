@@ -243,11 +243,13 @@ class TaskContainer : AppCompatActivity() {
                             finish()
                         } else {
                             Toast.makeText(this, "Unable to post result to database, please try again later", Toast.LENGTH_LONG).show()
+                            btmSheetReturn.text = "Retry"
                         }
                     },
                     Response.ErrorListener { error ->
                         Log.i("LanProject", error.toString())
                         Toast.makeText(this, "Unable to post result to database, please try again later", Toast.LENGTH_LONG).show()
+                        btmSheetReturn.text = "Retry"
                     }
                 ) {
                     override fun getHeaders(): MutableMap<String, String> {
