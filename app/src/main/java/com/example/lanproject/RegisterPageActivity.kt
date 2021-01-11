@@ -12,10 +12,16 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_register_page.*
+import kotlinx.android.synthetic.main.activity_register_page.PasswordField
+import kotlinx.android.synthetic.main.activity_register_page.UsernameField
+import org.json.JSONObject
 
 class RegisterPageActivity : AppCompatActivity() {
 
@@ -31,6 +37,7 @@ class RegisterPageActivity : AppCompatActivity() {
         Password = findViewById<EditText>(R.id.PasswordRegisterpswd)
         ConfirmPassword = findViewById<EditText>(R.id.PasswordReRegisterpswd)
 
+        //Removes error status from textboxes when typed in
         PlainTextRegisterUsername.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -99,38 +106,37 @@ class RegisterPageActivity : AppCompatActivity() {
         var url: String? = null
         val queue = Volley.newRequestQueue(this)
 
-        //url = "https.//lwm.sh/~lanproject/register.php?uanme=<" + Username?.text + ">&pass=<" + Password?.text + ">&role=<" + roleSpinner?.selectedItem.toString() + ">"
         url = "https://lwm.sh/~lanproject/register.php?uname=" + Username?.text + "&pass=" + Password?.text + "&role=" + roleSpinner?.selectedItem.toString()
         //https.//lwm.sh/~lanproject/register.php?uanme=<användarnamn>&pass=<pass>&role=<Student eller Teacher>
 
-        val stringRequest = StringRequest(Request.Method.GET, url, {
-                response ->
-            //Log.e("response", "YAS")
-            startActivity(Intent(this, MainActivity::class.java))
+        queue.add(
+                object : JsonObjectRequest(Request.Method.GET, url, null,
+                        Response.Listener<JSONObject> { response ->
+                            response?.toString(4)?.let { Log.i("LanProject", it) }
+                            if (response.getString("status") == "success") {
+                                startActivity(Intent(this, MainActivity::class.java))
+                            } else {
+                                UsernameField.error = getString(R.string.Error)
+                                PasswordField.error = getString(R.string.Error)
+                                ConfirmPasswordField.error = getString(R.string.Error)
+                            }
+                        },
+                        { error ->
+                            if (error.networkResponse == null){
+                                UsernameField.error = getString(R.string.ConnectFail)
+                                PasswordField.error = getString(R.string.ConnectFail)
+                                ConfirmPasswordField.error = getString(R.string.ConnectFail)
+                            }
+                            else{
+                                UsernameField.error = getString(R.string.Error)
+                                PasswordField.error = getString(R.string.Error)
+                                ConfirmPasswordField.error = getString(R.string.Error)
+                            }
+                        }
+                )
+                {}
+        )
 
-        }, { error -> Log.e("response", "nei...")
-            //Log.e("res", error.toString())
-            //Log.e("res", url)
-            //ConfirmPasswordField.error = error.toString()
-            //if (error.toString() == "com.android.volley.NoConnectionError:")
-            //    UsernameField.error = error.toString()
-            //else if (error.toString() == "com.android.volley.)
-            if (error.toString() == "com.android.volley.ClientError")
-                UsernameField.error = getString(R.string.UsernameTaken)
-            else if (error.networkResponse == null) {
-                UsernameField.error = getString(R.string.ConnectFail)
-                PasswordField.error = getString(R.string.ConnectFail)
-                ConfirmPasswordField.error = getString(R.string.ConnectFail)
-            }
-            else{
-                UsernameField.error = getString(R.string.Error)
-                PasswordField.error = getString(R.string.Error)
-                ConfirmPasswordField.error = error.toString()
-            }
-        })
-
-        queue.add(stringRequest)
-        //startActivity(Intent(this, MainActivity::class.java))
     }
 
 }
