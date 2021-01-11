@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.task_container_bottomsheet.*
 import kotlinx.coroutines.withTimeout
 import org.json.JSONObject
 import android.util.Base64
+import kotlinx.android.synthetic.main.task_container_bottomsheet.view.*
 
 class TaskContainer : AppCompatActivity() {
     private inner class PageAdapter(activity: TaskContainer, private val pages: List<Fragment>) : FragmentStateAdapter(activity) {
@@ -224,6 +225,14 @@ class TaskContainer : AppCompatActivity() {
                 btmSheetExpand.setImageResource(R.drawable.ic_baseline_expand_less_24)
             }
         }
+        bottomSheet.header.setOnClickListener {
+            if (BottomSheetBehavior.from(bottomSheet).state == BottomSheetBehavior.STATE_COLLAPSED)
+                BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
+            else {
+                BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_COLLAPSED
+                btmSheetExpand.setImageResource(R.drawable.ic_baseline_expand_less_24)
+            }
+        }
         bottomSheet.visibility = View.GONE
 
         btmSheetReturn.setOnClickListener {
@@ -231,7 +240,7 @@ class TaskContainer : AppCompatActivity() {
             val url = "https://lwm.sh/~lanproject/complete.php?maxResult=${testResult.maxResult}&result=${testResult.result}&difficulty=${
                     when (intent.getIntExtra("difficulty", 0)) {
                         0 -> "Easy"
-                        1 -> "Normal"
+                        1 -> "Medium"
                         else -> "Hard"
                     }
                 }&activity=${taskNames[intent.getIntExtra("taskID", 0)]}"
@@ -243,11 +252,13 @@ class TaskContainer : AppCompatActivity() {
                             finish()
                         } else {
                             Toast.makeText(this, "Unable to post result to database, please try again later", Toast.LENGTH_LONG).show()
+                            btmSheetReturn.text = "Retry"
                         }
                     },
                     Response.ErrorListener { error ->
                         Log.i("LanProject", error.toString())
                         Toast.makeText(this, "Unable to post result to database, please try again later", Toast.LENGTH_LONG).show()
+                        btmSheetReturn.text = "Retry"
                     }
                 ) {
                     override fun getHeaders(): MutableMap<String, String> {

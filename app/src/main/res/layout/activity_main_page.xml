@@ -29,7 +29,7 @@
         android:layout_marginEnd="@dimen/activity_margin"
         android:layout_marginRight="@dimen/activity_margin"
         android:gravity="center"
-        android:text="Choose difficulty"
+        android:text="Choose difficulty smol"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -38,18 +38,17 @@
 
     <Button
         android:id="@+id/ButtonStartActivity"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="@dimen/activity_button"
-        android:layout_marginTop="64dp"
+        android:layout_marginBottom="16dp"
         android:onClick="ActivityView"
         android:text="@string/start"
         app:icon="@drawable/ic_baseline_play_circle_outline_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SeekBarDifficulty"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toTopOf="@+id/ButtonToHistory"
+        app:layout_constraintEnd_toEndOf="@+id/ButtonToHistory"
+        app:layout_constraintStart_toStartOf="@+id/ButtonToHistory"
+        app:layout_constraintTop_toBottomOf="@+id/TextViewDifficultyMedium"
+        app:layout_constraintVertical_bias="0.95" />
 
     <SeekBar
         android:id="@+id/SeekBarDifficulty"
@@ -148,8 +147,6 @@
         app:icon="@drawable/ic_baseline_history_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonStartActivity"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

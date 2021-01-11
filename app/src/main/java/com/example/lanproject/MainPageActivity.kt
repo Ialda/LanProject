@@ -12,6 +12,7 @@ class MainPageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_page)
+        Log.i("LanProject","WIDTH: ${this.resources.configuration.screenWidthDp}")
     }
 
     fun ActivityView(view: View) {
