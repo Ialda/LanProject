@@ -6,18 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".TaskListeningFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/editbox_background"
-        android:ems="10"
-        android:hint="Box"
-        android:inputType="text"
-        android:visibility="gone" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -29,6 +17,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/PlayPauseDescription"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scrollView2"
@@ -58,15 +47,13 @@
 
         <ScrollView
             android:id="@+id/scrollView2"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.23000002">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -76,8 +63,8 @@
                     android:id="@+id/finishTestButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="@dimen/activity_margin"
+                    android:layout_marginLeft="@dimen/activity_margin"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:text="@string/FinishTest"
@@ -89,11 +76,7 @@
                     android:id="@+id/cardView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_margin="@dimen/activity_margin"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -107,8 +90,8 @@
                             android:id="@+id/textView13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="@dimen/activity_margin"
+                            android:layout_marginLeft="@dimen/activity_margin"
                             android:layout_marginTop="8dp"
                             android:text="@string/Instructions"
                             android:textSize="18sp"
@@ -119,11 +102,11 @@
                             android:id="@+id/listeningInstructionsText"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="@dimen/activity_margin"
+                            android:layout_marginLeft="@dimen/activity_margin"
                             android:layout_marginTop="8dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
+                            android:layout_marginEnd="@dimen/activity_margin"
+                            android:layout_marginRight="@dimen/activity_margin"
                             android:layout_marginBottom="8dp"
                             android:text="One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. "
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -138,11 +121,7 @@
                     android:id="@+id/cardView7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_margin="@dimen/activity_margin"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cardView6">
@@ -174,7 +153,6 @@
                                 android:layout_marginRight="16dp"
                                 android:layout_marginBottom="8dp"
                                 android:fontFamily="sans-serif"
-                                android:text="Task"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
 

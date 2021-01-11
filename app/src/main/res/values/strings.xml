@@ -35,6 +35,7 @@
     <string name="LanguideLoginGreeting">Sign in to access LanGuide</string>
     <string name="FinishTest">Finish test</string>
     <string name="Instructions">Instructions</string>
+    <string name="PlayPauseDescription">Mediaplayer play/pause button</string>
 
     <string-array name="ActivityList">
         <item>Reading Task</item>
