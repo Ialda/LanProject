@@ -8,15 +8,11 @@ import android.text.TextWatcher
 import android.util.Base64
 import android.view.View
 import android.widget.EditText
-import androidx.core.text.parseAsHtml
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.PasswordField
 import kotlinx.android.synthetic.main.activity_main.UsernameField
-import kotlinx.android.synthetic.main.activity_register_page.*
-import java.net.PasswordAuthentication
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
