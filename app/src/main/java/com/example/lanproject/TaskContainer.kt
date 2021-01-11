@@ -231,7 +231,7 @@ class TaskContainer : AppCompatActivity() {
             val url = "https://lwm.sh/~lanproject/complete.php?maxResult=${testResult.maxResult}&result=${testResult.result}&difficulty=${
                     when (intent.getIntExtra("difficulty", 0)) {
                         0 -> "Easy"
-                        1 -> "Normal"
+                        1 -> "Medium"
                         else -> "Hard"
                     }
                 }&activity=${taskNames[intent.getIntExtra("taskID", 0)]}"
