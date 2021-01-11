@@ -16,7 +16,6 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.PasswordField
 import kotlinx.android.synthetic.main.activity_main.UsernameField
@@ -32,10 +31,6 @@ class MainActivity : AppCompatActivity() {
         ButtonLogin.setOnClickListener { view ->
             MainPageView(view)
         }
-        /*PasswordUserpswd.setOnFocusChangeListener{ view, hasfocus ->
-            if (hasfocus)
-                PasswordTextlayout.setError(null)
-        }*/
 
         PlainTextUsername.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -77,7 +72,6 @@ class MainActivity : AppCompatActivity() {
         }
         else
             CheckUser()
-            //startActivity(Intent(this, MainPageActivity::class.java))
     }
 
     fun RegisterPageview(view: View) {
@@ -90,25 +84,6 @@ class MainActivity : AppCompatActivity() {
         val serverURL = "https://lwm.sh/~lanproject/auth.php"
         val Username = findViewById<EditText>(R.id.PlainTextUsername)
         val Password = findViewById<EditText>(R.id.PasswordUserpswd)
-
-        /*val stringRequest = object: StringRequest(
-                Method.GET, serverURL,
-                { response ->
-                    //response.toString()
-                    /*response?.toString(4)?.let
-                    if (response.getString("status") == "success") {
-                        finish()
-                    } else {
-                        Toast.makeText(this, "Unable to post result to database, please try again later", Toast.LENGTH_LONG).show()
-                    }*/
-                    LanProjectApplication.Username = Username?.text.toString()
-                    LanProjectApplication.Password = Password?.text.toString()
-
-                    startActivity(Intent(this, MainPageActivity::class.java))
-                },
-                { error -> etc.
-                }
-                )*/
 
         queue.add(
             object : JsonObjectRequest(Request.Method.GET, serverURL, null,
@@ -153,8 +128,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         )
-
-        //queue.add(stringRequest)
     }
-
 }
