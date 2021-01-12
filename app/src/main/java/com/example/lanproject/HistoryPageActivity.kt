@@ -42,9 +42,9 @@ class HistoryPageActivity : AppCompatActivity() {
             }
         }, { error ->
             if (error.networkResponse == null) {
-                findViewById<TextView>(R.id.HistoryEntryLoadText).text = "No response"
+                findViewById<TextView>(R.id.HistoryEntryLoadText).text = getString(R.string.ConnectFail)
             } else {
-                findViewById<TextView>(R.id.HistoryEntryLoadText).text = "Error!"
+                findViewById<TextView>(R.id.HistoryEntryLoadText).text = getString(R.string.Error)
             }
         })
 
