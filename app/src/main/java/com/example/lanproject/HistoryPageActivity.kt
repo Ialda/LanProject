@@ -18,7 +18,6 @@ import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
 class HistoryPageActivity : AppCompatActivity() {
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history_page)
@@ -60,7 +59,6 @@ class HistoryPageActivity : AppCompatActivity() {
         queue.add(stringRequest)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun CreateNewHistory(X: Int, testvalues: List<String>, TextSize: Float): Boolean {
         //Catch if no entries
         if (testvalues[0].toString().toInt() == 0) {
@@ -96,7 +94,12 @@ class HistoryPageActivity : AppCompatActivity() {
         TextViewActRes.text = testvalues[X]
         TextViewPointRes.text = testvalues[X + 1] + "/" + testvalues[X + 2]
         TextViewDiffRes.text = testvalues[X + 3]
-        TextViewDateRes.text = TimeZoneConvertion(testvalues[X + 4])
+
+        if (Build.VERSION.SDK_INT >= 26) {
+            TextViewDateRes.text = TimeZoneConvertion(testvalues[X + 4])
+        } else {
+            TextViewDateRes.text = testvalues[X + 4]
+        }
 
         TextViewAct.textSize = TextSize
         TextViewPoint.textSize = TextSize
