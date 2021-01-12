@@ -52,6 +52,7 @@
                     android:id="@+id/PasswordUserpswd"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
+                    android:nextFocusDown="@+id/ButtonLogin"
                     android:inputType="textPassword"
                     android:singleLine="true"
                     android:textSize="18sp" />
