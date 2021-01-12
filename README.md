@@ -1,5 +1,3 @@
 # LanProject
-Test - Test igen
-hejhej
-Test igen
-Test_More
+LanGuide android application
+APK download available in releases section
