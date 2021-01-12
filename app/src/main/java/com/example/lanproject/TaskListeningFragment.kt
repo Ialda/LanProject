@@ -1,6 +1,5 @@
 package com.example.lanproject
 
-import android.content.res.Configuration
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -11,21 +10,14 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.edit_text.view.*
 import kotlinx.android.synthetic.main.fragment_task_listening.*
 import org.json.JSONObject
-import java.io.File
 
 class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFragment {
-    //var mediaPlayer: MediaPlayer? = null
     private lateinit var viewModel: TaskListeningViewModel
-    /*private val mediaPlayer2 = MediaPlayer().apply {
-        setOnPreparedListener { start() }
-        setOnCompletionListener { reset() }
-    }*/
     var playPauseButton: ImageButton? = null
     var seekBar: SeekBar? = null
     var mediaTime: TextView? = null
@@ -160,11 +152,9 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
                     scoreValue = if (editText.editText?.text.toString().equals(item.gap.toString(), ignoreCase = true)) 1 else 0
 
                     if (scoreValue == 1) {
-                        //child.findViewById<ImageView>(R.id.successIcon).visibility = View.VISIBLE
                         child.findViewById<TextInputLayout>(R.id.EditTextField).setEndIconDrawable(R.drawable.ic_baseline_check_24)
                     }
                     else {
-                        //child.findViewById<ImageView>(R.id.failIcon).visibility = View.VISIBLE
                         child.findViewById<TextInputLayout>(R.id.EditTextField).setEndIconDrawable(R.drawable.ic_baseline_close_24)
                     }
                     scoreValue
@@ -178,11 +168,7 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
 
             if (viewModel.mediaPlayer == null)
             {
-
-               // val audio:String = File(testData.audio).nameWithoutExtension
                 val audio:String = testData.audio.replace(".mp3", "")
-                //resources.getIdentifier(audio, "raw", activity?.packageName)
-                //viewModel.mediaPlayer = MediaPlayer.create(context, R.raw.testsound)
                 viewModel.mediaPlayer = MediaPlayer.create(context, resources.getIdentifier(audio, "raw", activity?.packageName))
             }
             playPauseButton = getView()?.findViewById(R.id.PlayPauseSound)
@@ -221,9 +207,6 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
 
                     mediaTime?.text = (timeMin.toString() + ":" + timeSek.toString() + " / " +
                             timeLengthMin.toString() + ":" + timeLengthSek.toString())
-
-
-                    //totalTime?.text = (timeLengthMin.toString() + ":" + timeLengthSek.toString())
                 }
 
                 override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -248,12 +231,10 @@ class TaskListeningFragment : Fragment(R.layout.fragment_task_listening), TaskFr
 
     fun PlaySound() {
         viewModel.PlaySound()
-        //mediaPlayer?.start()
     }
 
     fun PauseSound() {
         viewModel.PauseSound()
-        //mediaPlayer?.pause()
     }
 
     private fun initSeekbar() {
