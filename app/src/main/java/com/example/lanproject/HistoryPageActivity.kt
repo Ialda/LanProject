@@ -1,17 +1,24 @@
 package com.example.lanproject
 
+import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.view.setMargins
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import java.time.OffsetDateTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 
 class HistoryPageActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history_page)
@@ -23,11 +30,13 @@ class HistoryPageActivity : AppCompatActivity() {
             val strRes = response.toString()
             val testvalues = strRes.split(";")
 
+            //Getting screen size
             val displayMetrics = DisplayMetrics()
             windowManager.defaultDisplay.getMetrics(displayMetrics)
             val height = displayMetrics.heightPixels
             val width = displayMetrics.widthPixels
 
+            //Setting text size
             var textSize: Float = width.toFloat() / 45
             if (height * 2 < width)
                 textSize /= 2
@@ -51,7 +60,9 @@ class HistoryPageActivity : AppCompatActivity() {
         queue.add(stringRequest)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun CreateNewHistory(X: Int, testvalues: List<String>, TextSize: Float): Boolean {
+        //Catch if no entries
         if (testvalues[0].toString().toInt() == 0) {
             return false
         }
@@ -71,6 +82,7 @@ class HistoryPageActivity : AppCompatActivity() {
         val TextViewDiffRes = TextView(this)
         val TextViewDateRes = TextView(this)
 
+        //Set parameters
         val LinearParams: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT)
         LinearParams.setMargins(25)
         LinearView.orientation = LinearLayout.VERTICAL
@@ -84,7 +96,7 @@ class HistoryPageActivity : AppCompatActivity() {
         TextViewActRes.text = testvalues[X]
         TextViewPointRes.text = testvalues[X + 1] + "/" + testvalues[X + 2]
         TextViewDiffRes.text = testvalues[X + 3]
-        TextViewDateRes.text = testvalues[X + 4]
+        TextViewDateRes.text = TimeZoneConvertion(testvalues[X + 4])
 
         TextViewAct.textSize = TextSize
         TextViewPoint.textSize = TextSize
@@ -110,9 +122,18 @@ class HistoryPageActivity : AppCompatActivity() {
 
         HistoryView.addView(CardView, LinearParams)
 
+        //Return false if there are no more entries
         if ((testvalues[0].toString().toInt() * 5) + 1 == X + 5)
             return false
 
         return true
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun TimeZoneConvertion(TimeToConvert : String) : String {
+        //Converts the timestamp from UTC to the systemdefault timezone
+        val resultOfParsing = OffsetDateTime.parse(TimeToConvert + "+0000", DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss[.SSS]Z"))
+        val currentTimeZone: ZonedDateTime = resultOfParsing.atZoneSameInstant(ZoneId.systemDefault())
+        return currentTimeZone.format(DateTimeFormatter.ofPattern(("uuuu-MM-dd HH:mm:ss")))
     }
 }
