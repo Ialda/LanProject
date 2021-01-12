@@ -99,6 +99,7 @@ class HistoryPageActivity : AppCompatActivity() {
             TextViewDateRes.text = TimeZoneConvertion(testvalues[X + 4])
         } else {
             TextViewDateRes.text = testvalues[X + 4]
+            findViewById<TextView>(R.id.HistoryEntryLoadText).text = getString(R.string.SdkWarning)
         }
 
         TextViewAct.textSize = TextSize
